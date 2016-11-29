@@ -24,11 +24,11 @@ public class News {
 	String biaoTi;
 	String neiRongURL;
 	Boolean isFaBu;
-	Boolean isChinese;
+	Boolean isKorean;
 	Boolean isJapanese;
-	Boolean IsIndonesians;
-	Boolean IsBrazilians;
-	String  type;
+	Boolean isIndonesians;
+	Boolean isBrazilians;
+	String  leiXing;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -62,11 +62,11 @@ public class News {
 	public void setIsFaBu(Boolean isFaBu) {
 		this.isFaBu = isFaBu;
 	}
-	public Boolean getIsChinese() {
-		return isChinese;
+	public Boolean getIsKorean() {
+		return isKorean;
 	}
-	public void setIsChinese(Boolean isChinese) {
-		this.isChinese = isChinese;
+	public void setIsKorean(Boolean isKorean) {
+		this.isKorean = isKorean;
 	}
 	public Boolean getIsJapanese() {
 		return isJapanese;
@@ -75,21 +75,22 @@ public class News {
 		this.isJapanese = isJapanese;
 	}
 	public Boolean getIsIndonesians() {
-		return IsIndonesians;
+		return isIndonesians;
 	}
 	public void setIsIndonesians(Boolean isIndonesians) {
-		IsIndonesians = isIndonesians;
+		this.isIndonesians = isIndonesians;
 	}
 	public Boolean getIsBrazilians() {
-		return IsBrazilians;
+		return isBrazilians;
 	}
 	public void setIsBrazilians(Boolean isBrazilians) {
-		IsBrazilians = isBrazilians;
+		this.isBrazilians = isBrazilians;
 	}
-	public String getType() {
-		return type;
+	public String getLeiXing() {
+		return leiXing;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setLeiXing(String leiXing) {
+		this.leiXing = leiXing;
 	}
+
 }

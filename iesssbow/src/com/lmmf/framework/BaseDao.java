@@ -137,8 +137,6 @@ public abstract class BaseDao<T, PK extends Serializable> {
 
 	public List<T> findListByPage(int pageNum, int pageSize, String hql,
 			Object[] params) throws Exception {
-		System.out.println(pageNum + "  " + pageSize + "  " + hql);
-		System.out.println(params);
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		if (params != null && params.length > 0) {
 			for (int i = 0; i < params.length; i++)

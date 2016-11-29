@@ -62,12 +62,12 @@
                 </li>
                 <li  class="current"><a href="#"><img src="${ctx }/img/icons/menu/layout.png" alt="" /> 新闻管理</a>
                     <ul>
-                                                <li><a href="${ctx }/news/list_gg">公告</a></li>
-                                                <li class="current"><a href="${ctx }/news/list_rd">热点</a></li>
-                                                <li><a href="${ctx }/news/list_gj">国际</a></li>
-                                                <li><a href="${ctx }/news/list_xn">校内</a></li>
-                                                <li><a href="${ctx }/formsXW.jsp">添加新闻</a></li>
-                                                <li><a href="${ctx }/formLB.jsp">添加首页轮播图</a></li>
+                        <li><a href="${ctx }/news/list_gg">公告</a></li>
+                        <li class="current"><a href="${ctx }/news/list_rd">热点</a></li>
+                        <li><a href="${ctx }/news/list_gj">国际</a></li>
+                        <li><a href="${ctx }/news/list_xn">校内</a></li>
+                        <li><a href="${ctx }/formsXW.jsp">添加新闻</a></li>
+                        <li><a href="${ctx }/formLB.jsp">添加首页轮播图</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/brush.png" alt="" /> 信息管理</a>
@@ -133,14 +133,21 @@
             <tbody>
 				<c:forEach items="${page.list}" var="p">
 					<c:if test="${p.isFaBu==true}">
-					<c:if test="${p.type=='热点'}">
 					<tr>
 						<td></td>
 						<td>${p.biaoTi}</td>
 						<td>
-								<c:if test="${p.isChinese==false}&&${p.isJapanese==false}&&${p.isIndonesians==false}&&${p.isBrazilians==false}">无</c:if>
-								<c:if test="${p.isChinese}">
-									中国&nbsp
+								<c:if test="${p.isKorean eq null}">
+								<c:if test="${p.isJapanese eq null}">
+								<c:if test="${p.isIndonesians eq null}">
+								<c:if test="${p.isBrazilians eq null}">
+								无
+								</c:if>
+								</c:if>
+								</c:if>
+								</c:if>
+								<c:if test="${p.isKorean}">
+									韩国&nbsp
 								</c:if>
 								<c:if test="${p.isJapanese}">
 									日本&nbsp
@@ -153,13 +160,12 @@
 							</c:if>
 						</td>
 						<td>${p.time}</td>
-						<td>${p.time}</td>
+						<td>${p.neiRongURL}</td>
 						<td>
 						<a href="${ctx }/news/edit?id_news=${p.id_news }" title="编辑信息"><img src="${ctx }/img/icons/actions/edit.png"/></a>
-						<a href="${ctx }/news/delete?id_news=${p.id_news }" title="删除信息"><img src="${ctx }/img/icons/actions/delete.png"/></a>
+						<a href="${ctx }/news/delete_rd?id_news=${p.id_news }" title="删除信息"><img src="${ctx }/img/icons/actions/delete.png"/></a>
 						</td>
 					</tr>
-					</c:if>
 					</c:if>
 				</c:forEach>
                             </tbody>
@@ -168,7 +174,7 @@
         </div>
         <div class="pagination">
         	<c:forEach begin="1" end="${page.totalPageNum }" var="pageNum">
-				<a name="pagen"  href="${ctx }/news/list?pageNum=${pageNum }" class="current">${pageNum }</a>
+				<a name="pagen"  href="${ctx }/news/list_rd?pageNum=${pageNum }" class="current">${pageNum }</a>
 			</c:forEach>
         </div>
     </div>

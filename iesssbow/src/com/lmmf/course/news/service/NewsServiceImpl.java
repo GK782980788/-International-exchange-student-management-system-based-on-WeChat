@@ -18,25 +18,25 @@ public class NewsServiceImpl {
 		this.newsDaoImpl.saveNews(news);
 	}
 	@Transactional(readOnly=true)
-	public Page<News> listNews(int pageNum,int pageSize,Object[] params){
-		return this.newsDaoImpl.findNews(pageNum, pageSize, params);
+	public Page<News> listNews(int pageNum,int pageSize,Object[] params,String leiXing){
+		return this.newsDaoImpl.findNews(pageNum, pageSize, params, leiXing);
 	}
 	@Transactional(readOnly=true)
 	public News getNews(int id_news){
 		return this.newsDaoImpl.getNews(id_news);
 	}	
 	public void editNews(News news){
-		System.out.println("get id_news()"+news.getId_news());
+		System.out.println("ÒÑ½øÈëeditNews");
 		News news02 = this.newsDaoImpl.getNews(news.getId_news());
 		news02.setTime(news.getTime());
 		news02.setBiaoTi(news.getBiaoTi());
 		news02.setNeiRongURL(news.getNeiRongURL());
 		news02.setIsFaBu(news.getIsFaBu());
-		news02.setIsChinese(news.getIsChinese());
+		news02.setIsKorean(news.getIsKorean());
 		news02.setIsJapanese(news.getIsJapanese());
 		news02.setIsIndonesians(news.getIsIndonesians());
 		news02.setIsBrazilians(news.getIsBrazilians());
-		news02.setType(news.getType());
+		news02.setLeiXing(news.getLeiXing());
 		this.newsDaoImpl.updateNews(news02);
 	}
 	public void dropNews(int id_news){

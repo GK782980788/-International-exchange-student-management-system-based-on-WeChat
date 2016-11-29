@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
         <!-- jQuery AND jQueryUI -->
         <script type="text/javascript" src="${ctx }/js/libs/jquery/1.6/jquery.min.js"></script>
         <script type="text/javascript" src="${ctx }/js/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
-        
+
         <!-- Compressed Version
         <link type="text/css" rel="stylesheet" href="min/b=CoreAdmin&f=css/reset.css,css/style.css,css/jqueryui/jqueryui.css,js/jwysiwyg/jquery.wysiwyg.old-school.css,js/zoombox/zoombox.css" />
         <script type="text/javascript" src="min/b=CoreAdmin/js&f=cookie/jquery.cookie.js,jwysiwyg/jquery.wysiwyg.js,tooltipsy.min.js,iphone-style-checkboxes.js,excanvas.js,zoombox/zoombox.js,visualize.jQuery.js,jquery.uniform.min.js,main.js"></script>
@@ -24,10 +24,7 @@
     <body>
         
         <script type="text/javascript" src="${ctx }/content/settings/main.js"></script>
-<link rel="stylesheet" href="${ctx }/content/settings/style.css" />
-
-
- 
+	<link rel="stylesheet" href="${ctx }/content/settings/style.css" />
         <!--              
                 HEAD
                         --> 
@@ -52,7 +49,7 @@
         <!--            
                 SIDEBAR
                          --> 
-<div id="sidebar">
+		<div id="sidebar">
             <ul>
                 <li>
                     <a href="index.jsp">
@@ -133,14 +130,21 @@
             <tbody>
 				<c:forEach items="${page.list}" var="p">
 					<c:if test="${p.isFaBu==true}">
-					<c:if test="${p.type=='校内'}">
 					<tr>
 						<td></td>
 						<td>${p.biaoTi}</td>
 						<td>
-								<c:if test="${p.isChinese==false}&&${p.isJapanese==false}&&${p.isIndonesians==false}&&${p.isBrazilians==false}">无</c:if>
-								<c:if test="${p.isChinese}">
-									中国&nbsp
+								<c:if test="${p.isKorean eq null}">
+								<c:if test="${p.isJapanese eq null}">
+								<c:if test="${p.isIndonesians eq null}">
+								<c:if test="${p.isBrazilians eq null}">
+								无
+								</c:if>
+								</c:if>
+								</c:if>
+								</c:if>
+								<c:if test="${p.isKorean}">
+									韩国&nbsp
 								</c:if>
 								<c:if test="${p.isJapanese}">
 									日本&nbsp
@@ -153,13 +157,12 @@
 							</c:if>
 						</td>
 						<td>${p.time}</td>
-						<td>${p.time}</td>
+						<td>${p.neiRongURL}</td>
 						<td>
 						<a href="${ctx }/news/edit?id_news=${p.id_news }" title="编辑信息"><img src="${ctx }/img/icons/actions/edit.png"/></a>
-						<a href="${ctx }/news/delete?id_news=${p.id_news }" title="删除信息"><img src="${ctx }/img/icons/actions/delete.png"/></a>
+						<a href="${ctx }/news/delete_xn?id_news=${p.id_news }" title="删除信息"><img src="${ctx }/img/icons/actions/delete.png"/></a>
 						</td>
 					</tr>
-					</c:if>
 					</c:if>
 				</c:forEach>
                             </tbody>
@@ -168,14 +171,11 @@
         </div>
         <div class="pagination">
         	<c:forEach begin="1" end="${page.totalPageNum }" var="pageNum">
-				<a name="pagen"  href="${ctx }/news/list?pageNum=${pageNum }" class="current">${pageNum }</a>
+				<a name="pagen"  href="${ctx }/news/list_xn?pageNum=${pageNum }" class="current">${pageNum }</a>
 			</c:forEach>
         </div>
     </div>
 </div>
-
-
-
 <!-- <div class="bloc">
     <div class="title">
         新闻列表

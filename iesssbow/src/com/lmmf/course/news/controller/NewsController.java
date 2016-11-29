@@ -1,10 +1,12 @@
 package com.lmmf.course.news.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,54 +24,132 @@ public class NewsController {
 	@Resource
 	private NewsServiceImpl newsServiceImpl;
 	
-	@RequestMapping("add")
-	public String add(@RequestParam(name="type") String type ,  News news){
+	@RequestMapping(value="add",method = RequestMethod.POST)
+	public String add(News news){
 		news.setIsFaBu(true);
 		try {
-			type = new String(type.getBytes("iso-8859-1"),"utf-8");
+			String neiRongURL =news.getNeiRongURL();
+			neiRongURL = new String(neiRongURL.getBytes("iso-8859-1"),"utf-8");
+			news.setNeiRongURL(neiRongURL);
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
-		news.setType(type);
+		try {
+			String leiXing =news.getLeiXing();
+			leiXing = new String(leiXing.getBytes("iso-8859-1"),"utf-8");
+			news.setLeiXing(leiXing);
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 		try {
 			news.setBiaoTi(new String(news.getBiaoTi().getBytes("iso-8859-1"),"utf-8"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		this.newsServiceImpl.addNews(news);
-		return "redirect:list_gg";
+		if(news.getLeiXing().equals("公告")){
+			return "redirect:list_gg";			
+		}
+		if(news.getLeiXing().equals("热点")){
+			return "redirect:list_rd";			
+		}
+		if(news.getLeiXing().equals("国际")){
+			return "redirect:list_gj";			
+		}
+		if(news.getLeiXing().equals("校内")){
+			return "redirect:list_xn";			
+		}
+		System.out.println("add未选类型");
+			return "formXW?action='edit'";
 	}
 	@RequestMapping(value = "edit",method = RequestMethod.GET)
 	public String toEdit(@RequestParam("id_news") int id_news,HttpServletRequest request){
-		System.out.println(id_news);
+		System.out.println("已进入toEdit");
 		News news = this.newsServiceImpl.getNews(id_news);
-		request.setAttribute("news",news);
-		request.setAttribute("action", "edit");
+		HttpSession session = request.getSession();
+		session.setAttribute("news03",news);
+		session.setAttribute("action", "edit");
 		return "formsXW";
 	}
 	@RequestMapping(value="edit",method = RequestMethod.POST)
 	public String edit(News news,HttpServletRequest request){
-		System.out.println("13245646546"+news.getId_news());
+		news.setIsFaBu(true);
+		try {
+			String neiRongURL =news.getNeiRongURL();
+			neiRongURL = new String(neiRongURL.getBytes("iso-8859-1"),"utf-8");
+			news.setNeiRongURL(neiRongURL);
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			String leiXing =news.getLeiXing();
+			leiXing = new String(leiXing.getBytes("iso-8859-1"),"utf-8");
+			news.setLeiXing(leiXing);
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			news.setBiaoTi(new String(news.getBiaoTi().getBytes("iso-8859-1"),"utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		HttpSession session = request.getSession();
+		News news03 = (News)session.getAttribute("news03");
+		news.setId_news(news03.getId_news());
 		this.newsServiceImpl.editNews(news);
-		return "redirect:list_gg";
+		if(news.getLeiXing().equals("公告")){
+			return "redirect:list_gg";			
+		}
+		if(news.getLeiXing().equals("热点")){
+			return "redirect:list_rd";			
+		}
+		if(news.getLeiXing().equals("国际")){
+			return "redirect:list_gj";			
+		}
+		if(news.getLeiXing().equals("校内")){
+			return "redirect:list_xn";			
+		}
+		System.out.println("未选类型");
+			return "formXW?action='edit'";
 	}
-	@RequestMapping(value ="delete")
-	public String delete(
+	@RequestMapping(value ="delete_rd")
+	public String delete_rd(
 			@RequestParam("id_news") int id_news,
 			HttpServletRequest request){
 			this.newsServiceImpl.dropNews(id_news);
-			return "redirect:list";
+			return "redirect:list_rd";
 	}
-	@RequestMapping("list_gg")
+	@RequestMapping(value ="delete_xn")
+	public String delete_xn(
+			@RequestParam("id_news") int id_news,
+			HttpServletRequest request){
+			this.newsServiceImpl.dropNews(id_news);
+			return "redirect:list_xn";
+	}
+	@RequestMapping(value ="delete_gg")
+	public String delete_gg(
+			@RequestParam("id_news") int id_news,
+			HttpServletRequest request){
+			this.newsServiceImpl.dropNews(id_news);
+			return "redirect:list_gg";
+	}
+	@RequestMapping(value ="delete_gj")
+	public String delete_gj(
+			@RequestParam("id_news") int id_news,
+			HttpServletRequest request){
+			this.newsServiceImpl.dropNews(id_news);
+			return "redirect:list_gj";
+	}
+	@RequestMapping(value="list_gg")
 	public String list_gg(@RequestParam(name="pageNum",defaultValue="1")int pageNum,
 			@RequestParam(name="searchParam",defaultValue="")String searchParam,
 			HttpServletRequest request,
 			Model model){
 		Page<News> page;
 		if(searchParam==null||"".equals(searchParam)){
-			page=this.newsServiceImpl.listNews(pageNum,5,null);
+			page=this.newsServiceImpl.listNews(pageNum,10,null,"公告");
 		}else{
-			page=this.newsServiceImpl.listNews(pageNum,5,new Object[]{searchParam});
+			page=this.newsServiceImpl.listNews(pageNum,10,new Object[]{searchParam},"公告");
 		}			
 		request.setAttribute("page",page);
 		request.setAttribute("searchParam",searchParam);
@@ -79,43 +159,33 @@ public class NewsController {
 	public String list_gj(@RequestParam(name="pageNum",defaultValue="1")int pageNum,
 			@RequestParam(name="searchParam",defaultValue="")String searchParam,
 			HttpServletRequest request,
+			News news,
 			Model model){
 		Page<News> page;
 		if(searchParam==null||"".equals(searchParam)){
-			System.out.println("kasldflasjflj");
-			page=this.newsServiceImpl.listNews(pageNum,5,null);
+			page=this.newsServiceImpl.listNews(pageNum,10,null,"国际");
 		}else{
-			page=this.newsServiceImpl.listNews(pageNum,5,new Object[]{searchParam});
+			page=this.newsServiceImpl.listNews(pageNum,10,new Object[]{searchParam},"国际");
 		}			
 		List<News>list = page.getList();
-		System.out.println("ddd");
-		for(int i =0;i<list.size();i++){
-			System.out.println("ddd");
-			System.out.println(list.get(i).getTime());
-		}
 		request.setAttribute("page",page);
 		request.setAttribute("searchParam",searchParam);
 		return "tableXWgj";
 	}
 	
-	@RequestMapping("list_xn")
+	@RequestMapping(value="list_xn")
 	public String list_xn(@RequestParam(name="pageNum",defaultValue="1")int pageNum,
 			@RequestParam(name="searchParam",defaultValue="")String searchParam,
 			HttpServletRequest request,
+			News news,
 			Model model){
 		Page<News> page;
 		if(searchParam==null||"".equals(searchParam)){
-			System.out.println("kasldflasjflj");
-			page=this.newsServiceImpl.listNews(pageNum,5,null);
+			page=this.newsServiceImpl.listNews(pageNum,10,null,"校内");
 		}else{
-			page=this.newsServiceImpl.listNews(pageNum,5,new Object[]{searchParam});
+			page=this.newsServiceImpl.listNews(pageNum,10,new Object[]{searchParam},"校内");
 		}			
 		List<News>list = page.getList();
-		System.out.println("ddd");
-		for(int i =0;i<list.size();i++){
-			System.out.println("ddd");
-			System.out.println(list.get(i).getTime());
-		}
 		request.setAttribute("page",page);
 		request.setAttribute("searchParam",searchParam);
 		return "tableXWxn";
@@ -125,20 +195,15 @@ public class NewsController {
 	public String list_rd(@RequestParam(name="pageNum",defaultValue="1")int pageNum,
 			@RequestParam(name="searchParam",defaultValue="")String searchParam,
 			HttpServletRequest request,
+			News news,
 			Model model){
 		Page<News> page;
 		if(searchParam==null||"".equals(searchParam)){
-			System.out.println("kasldflasjflj");
-			page=this.newsServiceImpl.listNews(pageNum,5,null);
+			page=this.newsServiceImpl.listNews(pageNum,10,null,"热点");
 		}else{
-			page=this.newsServiceImpl.listNews(pageNum,5,new Object[]{searchParam});
+			page=this.newsServiceImpl.listNews(pageNum,10,new Object[]{searchParam},"热点");
 		}			
 		List<News>list = page.getList();
-		System.out.println("ddd");
-		for(int i =0;i<list.size();i++){
-			System.out.println("ddd");
-			System.out.println(list.get(i).getTime());
-		}
 		request.setAttribute("page",page);
 		request.setAttribute("searchParam",searchParam);
 		return "tableXWrd";

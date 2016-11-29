@@ -105,8 +105,6 @@
                      </ul>
                 </li>
             </ul>
-
-
         </div>  
                 
         <!--            
@@ -133,14 +131,22 @@
             <tbody>
 				<c:forEach items="${page.list}" var="p">
 					<c:if test="${p.isFaBu==true}">
-					<c:if test="${p.type=='公告'}">
 					<tr>
 						<td></td>
 						<td>${p.biaoTi}</td>
-						<td>	
-								<c:if test="${p.isChinese}">
+						<td>
+								<c:if test="${p.isKorean eq null}">
+								<c:if test="${p.isJapanese eq null}">
+								<c:if test="${p.isIndonesians eq null}">
+								<c:if test="${p.isBrazilians eq null}">
+								无
+								</c:if>
+								</c:if>
+								</c:if>
+								</c:if>
+								<c:if test="${p.isKorean}">
 									<c:set var="count" value="0"></c:set>
-									中国&nbsp
+									韩国&nbsp
 								</c:if>
 								<c:if test="${p.isJapanese}">
 									<c:set var="count" value="0"></c:set>
@@ -156,13 +162,12 @@
 							</c:if>
 						</td>
 						<td>${p.time}</td>
-						<td>${p.time}</td>
+						<td>${p.neiRongURL}</td>
 						<td>
 						<a href="${ctx }/news/edit?id_news=${p.id_news }" title="编辑信息"><img src="${ctx }/img/icons/actions/edit.png"/></a>
-						<a href="${ctx }/news/delete?id_news=${p.id_news }" title="删除信息"><img src="${ctx }/img/icons/actions/delete.png"/></a>
+						<a href="${ctx }/news/delete_gg?id_news=${p.id_news }" title="删除信息"><img src="${ctx }/img/icons/actions/delete.png"/></a>
 						</td>
 					</tr>
-					</c:if>
 					</c:if>
 				</c:forEach>
                 </tbody>

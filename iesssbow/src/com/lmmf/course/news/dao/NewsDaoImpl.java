@@ -28,26 +28,26 @@ public class NewsDaoImpl extends BaseDao<News,Integer> {
 			e.printStackTrace();
 		}
 	}
-	public Page<News> findNews(int pageNum,int pageSize,Object[] params){
+	public Page<News> findNews(int pageNum,int pageSize,Object[] params,String leiXing){
 		String hql;
 		if(params!=null&&params.length>0){
 			hql="from News news where news.id_news like ?";
 			params[0]="%" + params[0]+"%";
 		}else{
-			hql="from News";
+			hql="from News news where news.leiXing="+  "'"+leiXing+"'";
 		}
 		try{
 			Page<News> page = new Page<News>();
 			page.setCurrentPageNum(pageNum);	
 			page.setPageSize(pageSize);	
 			page=this.findByPage(pageNum, pageSize, hql, params);
-			
 			return page;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return null;
 	}
+	
 	public News getNews(int id_news){
 		try{
 			News news = this.get(id_news);
