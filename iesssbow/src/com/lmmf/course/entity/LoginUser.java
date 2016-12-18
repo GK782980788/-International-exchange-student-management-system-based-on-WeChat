@@ -22,7 +22,7 @@ public class LoginUser {
 	String userName;
 	String password;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId_LU() {
 		return id_LU;
 	}

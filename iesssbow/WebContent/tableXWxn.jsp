@@ -31,10 +31,8 @@
         <div id="head">
             <div class="left">
                 <a href="#" class="button profile"><img src="${ctx }/img/icons/top/huser.png" alt="" /></a>
-                Hi, 
-                <a href="#">John Doe</a>
-                |
-                <a href="#">Logout</a>
+               	您好，
+                ${userName}
             </div>
             <div class="right">
                 <form action="#" id="search" class="search placeholder">
@@ -52,7 +50,7 @@
 		<div id="sidebar">
             <ul>
                 <li>
-                    <a href="index.jsp">
+                    <a>
                         <img src="${ctx }/img/icons/menu/inbox.png" alt="" />
                         欢迎
                     </a>
@@ -77,28 +75,29 @@
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/factory.png" alt="" /> 疑难问题管理</a>
                     <ul>
-                        <li><a href="table.jsp?p=table">韩国专区</a></li>
-                        <li><a href="table.jsp?p=table">日本专区</a></li>
-                        <li><a href="table.jsp?p=table">印尼巴西专区</a></li>
-                        <li><a href="forms.jsp?p=forms">添加专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=校内">校内专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=国外">国外专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=新生">新生专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=常见">常见问题专区</a></li>
+                        <li><a href="${ctx}/formsYN.jsp">添加专区</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/lab.png" alt="" />学生管理</a>
                     <ul>
-                        <li><a href="tableXShg.jsp">韩国学生</a></li>
-                        <li><a href="tableXSyn.jsp">印尼学生</a></li>
-                        <li><a href="tableXSbx.jsp">巴西学生</a></li>
-                        <li><a href="tableXSrb.jsp">日本学生</a></li>
-                        <li><a href="formsXS.jsp">添加学生</a></li>
+                        <li><a href="${ctx }/student/list_hg">韩国学生</a></li>
+                        <li><a href="${ctx }/student/list_yn">印尼学生</a></li>
+                        <li><a href="${ctx }/student/list_bx">巴西学生</a></li>
+                        <li><a href="${ctx }/student/list_rb">日本学生</a></li>
+                        <li><a href="${ctx }/formsXS.jsp">添加学生</a></li>
                      </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/flag.png" alt="" />定向消息</a>
                     <ul>
-                        <li><a href="tableDXhg.jsp">韩国消息</a></li>
-                        <li><a href="tableDXyn.jsp">印尼消息</a></li>
-                        <li><a href="tableDXbx.jsp">巴西消息</a></li>
-                        <li><a href="tableDXrb.jsp">日本消息</a></li>
-                        <li><a href="formsDX.jsp">添加消息</a></li>
+                        <li><a href="${ctx }/news/list_dxhg">韩国消息</a></li>
+                        <li><a href="${ctx }/news/list_dxyn">印尼消息</a></li>
+                        <li><a href="${ctx }/news/list_dxbx">巴西消息</a></li>
+                        <li><a href="${ctx }/news/list_dxrb">日本消息</a></li>
+                        <li><a href="${ctx}/formsDX.jsp">添加消息</a></li>
                      </ul>
                 </li>
             </ul>
@@ -119,19 +118,18 @@
         <table>
             <thead>
                 <tr>
-                    <th></th>
+      
                     <th>标题</th>
                     <th>定向国籍</th>
                     <th>时间</th>
                     <th>内容</th>
-                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编辑</th>
+                    <th style="text-align:right;">编辑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
 				<c:forEach items="${page.list}" var="p">
 					<c:if test="${p.isFaBu==true}">
 					<tr>
-						<td></td>
 						<td>${p.biaoTi}</td>
 						<td>
 								<c:if test="${p.isKorean eq null}">
@@ -157,9 +155,9 @@
 							</c:if>
 						</td>
 						<td>${p.time}</td>
-						<td>${p.neiRongURL}</td>
-						<td>
-						<a href="${ctx }/news/edit?id_news=${p.id_news }" title="编辑信息"><img src="${ctx }/img/icons/actions/edit.png"/></a>
+						<td>${p.neiRong}</td>
+						<td style="text-align:right;">
+						<a href="${ctx }/news/edit?id_news=${p.id_news }" title="编辑信息"><img  style="border: 1px sold #ccc; padding-left:20px;padding-right:45px;"src="${ctx }/img/icons/actions/edit.png"/></a>
 						<a href="${ctx }/news/delete_xn?id_news=${p.id_news }" title="删除信息"><img src="${ctx }/img/icons/actions/delete.png"/></a>
 						</td>
 					</tr>

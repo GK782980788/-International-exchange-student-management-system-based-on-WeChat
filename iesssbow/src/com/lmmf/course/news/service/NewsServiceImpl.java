@@ -18,15 +18,22 @@ public class NewsServiceImpl {
 		this.newsDaoImpl.saveNews(news);
 	}
 	@Transactional(readOnly=true)
-	public Page<News> listNews(int pageNum,int pageSize,Object[] params,String leiXing){
-		return this.newsDaoImpl.findNews(pageNum, pageSize, params, leiXing);
+	public Page<News> listNews(int pageNum,int pageSize,Object[] params,String leiXing,Boolean isFaBu){
+		if(leiXing!="up"){
+		if(isFaBu==true){			
+			return this.newsDaoImpl.findNews(pageNum, pageSize, params,leiXing);
+		}else{
+			return this.newsDaoImpl.findNewsDX(pageNum, pageSize, params,leiXing);
+		}
+		}else{
+			return this.newsDaoImpl.editNews(pageNum);
+		}
 	}
 	@Transactional(readOnly=true)
 	public News getNews(int id_news){
 		return this.newsDaoImpl.getNews(id_news);
 	}	
 	public void editNews(News news){
-		System.out.println("ÒÑ½øÈëeditNews");
 		News news02 = this.newsDaoImpl.getNews(news.getId_news());
 		news02.setTime(news.getTime());
 		news02.setBiaoTi(news.getBiaoTi());

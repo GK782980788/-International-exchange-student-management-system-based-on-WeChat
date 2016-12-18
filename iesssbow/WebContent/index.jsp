@@ -25,7 +25,7 @@
     <body>
         
         <script type="text/javascript" src="${ctx }/content/settings/main.js"></script>
-<link rel="stylesheet" href="${ctx }/content/settings/style.css" />
+		<link rel="stylesheet" href="${ctx }/content/settings/style.css" />
 
 
  
@@ -55,19 +55,19 @@
         <div id="sidebar">
             <ul>
                 <li>
-                    <a href="index.jsp">
+                    <a>
                         <img src="${ctx }/img/icons/menu/inbox.png" alt="" />
                         欢迎
                     </a>
                 </li>
                 <li  class="current"><a href="#"><img src="${ctx }/img/icons/menu/layout.png" alt="" /> 新闻管理</a>
                     <ul>
-                                                <li><a href="${ctx }/news/list_gg">公告</a></li>
-                                                <li><a href="${ctx }/news/list_rd">热点</a></li>
-                                                <li><a href="${ctx }/news/list_gj">国际</a></li>
-                                                <li><a href="${ctx }/news/list_xn">校内</a></li>
-                                                <li><a href="${ctx }/formsXW.jsp">添加新闻</a></li>
-                                                <li><a href="${ctx }/formLB.jsp">添加首页轮播图</a></li>
+                        <li><a href="${ctx }/news/list_gg">公告</a></li>
+                        <li><a href="${ctx }/news/list_rd">热点</a></li>
+                        <li><a href="${ctx }/news/list_gj">国际</a></li>
+                        <li><a href="${ctx }/news/list_xn">校内</a></li>
+                        <li><a href="${ctx }/formsXW.jsp">添加新闻</a></li>
+                        <li><a href="${ctx }/shouyelunbotu/list">添加首页轮播图</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/brush.png" alt="" /> 信息管理</a>
@@ -80,28 +80,29 @@
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/factory.png" alt="" /> 疑难问题管理</a>
                     <ul>
-                        <li><a href="${ctx }/table.jsp?p=table">韩国专区</a></li>
-                        <li><a href="${ctx }/table.jsp?p=table">日本专区</a></li>
-                        <li><a href="${ctx }/table.jsp?p=table">印尼巴西专区</a></li>
-                        <li><a href="${ctx }/forms.jsp?p=forms">添加专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=校内">校内专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=国外">国外专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=新生">新生专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=常见">常见问题专区</a></li>
+                        <li><a href="${ctx}/formsYN.jsp">添加专区</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/lab.png" alt="" />学生管理</a>
                     <ul>
-                        <li><a href="${ctx }/tableXShg.jsp">韩国学生</a></li>
-                        <li><a href="${ctx }/tableXSyn.jsp">印尼学生</a></li>
-                        <li><a href="${ctx }/tableXSbx.jsp">巴西学生</a></li>
-                        <li><a href="${ctx }/tableXSrb.jsp">日本学生</a></li>
+                        <li><a href="${ctx }/student/list_hg">韩国学生</a></li>
+                        <li><a href="${ctx }/student/list_yn">印尼学生</a></li>
+                        <li><a href="${ctx }/student/list_bx">巴西学生</a></li>
+                        <li><a href="${ctx }/student/list_rb">日本学生</a></li>
                         <li><a href="${ctx }/formsXS.jsp">添加学生</a></li>
                      </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/flag.png" alt="" />定向消息</a>
                     <ul>
-                        <li><a href="${ctx }/tableDXhg.jsp">韩国消息</a></li>
-                        <li><a href="${ctx }/tableDXyn.jsp">印尼消息</a></li>
-                        <li><a href="${ctx }/tableDXbx.jsp">巴西消息</a></li>
-                        <li><a href="${ctx }/tableDXrb.jsp">日本消息</a></li>
-                        <li><a href="${ctx }/formsDX.jsp">添加消息</a></li>
+                        <li><a href="${ctx }/news/list_dxhg">韩国消息</a></li>
+                        <li><a href="${ctx }/news/list_dxyn">印尼消息</a></li>
+                        <li><a href="${ctx }/news/list_dxbx">巴西消息</a></li>
+                        <li><a href="${ctx }/news/list_dxrb">日本消息</a></li>
+                        <li><a href="${ctx}/formsDX.jsp">添加消息</a></li>
                      </ul>
                 </li>
             </ul>
@@ -116,11 +117,11 @@
 </h1>
   <div class="bloc">
     <div class="title">
-      content
+      内容
     </div>
     <div class="content">
      
-        <a href="affiche.html" class="shortcut">
+        <a href="${ctx }/news/list_gg" class="shortcut">
             <img src="${ctx }/img/ico01.png" alt="" />
             公告
         </a>
@@ -136,7 +137,7 @@
             <img src="${ctx }/img/ico04.png" alt=""  width="32" height="32"/>
             消息管理
         </a>
-        <a href="${ctx }/ahotspot.html" class="shortcut">
+        <a href="${ctx }/news/list_rd" class="shortcut">
             <img src="${ctx }/img/ico05.png" alt=""  width="32" height="32"/>
             热点
         </a>
@@ -154,32 +155,32 @@
                 
 <div class="bloc">
     <div class="title">
-        Today
+                     今天
     </div>
     <div class="content">
         <div class="left">
             <table class="noalt">
                 <thead>
                     <tr>
-                        <th colspan="2"><em>Content</em></th>
+                        <th colspan="2"><em>内容</em></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><h4>460</h4></td>
-                        <td>Posts</td>
+                        <td>邮件</td>
                     </tr>
                     <tr>
                         <td><h4>12</h4></td>
-                        <td>Pages</td>
+                        <td>页码</td>
                     </tr>
                     <tr>
                         <td><h4>5</h4></td>
-                        <td>Categories</td>
+                        <td>标题</td>
                     </tr>
                     <tr>
                         <td><h4>20 000</h4></td>
-                        <td>Contacts</td>
+                        <td>联系人</td>
                     </tr>
                 </tbody>
             </table>
@@ -188,21 +189,21 @@
             <table class="noalt">
                 <thead>
                     <tr>
-                        <th colspan="2"><em>Comments</em></th>
+                        <th colspan="2"><em>评论</em></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><h4>46 000</h4></td>
-                        <td class="good">Comments</td>
+                        <td class="good">评论</td>
                     </tr>
                     <tr>
                         <td><h4>5</h4></td>
-                        <td class="neutral">Waiting for validation</td>
+                        <td class="neutral">等待验证</td>
                     </tr>
                     <tr>
                         <td><h4>0</h4></td>
-                        <td class="bad">Spams</td>
+                        <td class="bad">垃圾邮件</td>
                     </tr>
                 </tbody>
             </table>

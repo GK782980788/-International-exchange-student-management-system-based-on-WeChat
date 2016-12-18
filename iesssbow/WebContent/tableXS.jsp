@@ -55,7 +55,7 @@
 <div id="sidebar">
             <ul>
                 <li>
-                    <a href="index.jsp">
+                    <a>
                         <img src="img/icons/menu/inbox.png" alt="" />
                         欢迎
                     </a>

@@ -29,7 +29,14 @@ public class News {
 	Boolean isIndonesians;
 	Boolean isBrazilians;
 	String  leiXing;
+	String  neiRong;
 	
+	public String getNeiRong() {
+		return neiRong;
+	}
+	public void setNeiRong(String neiRong) {
+		this.neiRong = neiRong;
+	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId_news() {

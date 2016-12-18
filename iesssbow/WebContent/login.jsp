@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -52,7 +53,9 @@ background-position: -294.3px 0px; background-repeat: no-repeat;">
     <div class="loginbody">
     
     <span class="systemlogo"></span> 
+    
     <form name="loginForm" action="${ctx}/loginuser/login" method="post">
+    
     <div class="loginbox" style="position: absolute; left: -12.5px;">
     <ul>
     <li><input name="userName" type="text" class="loginuser" value="admin" ></li>
@@ -63,6 +66,8 @@ background-position: -294.3px 0px; background-repeat: no-repeat;">
     </label></li>
     </ul>
     </div>
+    
     </form>
+    
     </div>
 </body></html>

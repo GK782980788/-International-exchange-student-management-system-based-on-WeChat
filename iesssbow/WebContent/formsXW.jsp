@@ -3,9 +3,9 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <% response.setContentType("text/html;charset=UTF-8"); %>
     <%@page import="java.util.Date" 
-    import="java.util.Calendar" 
-    import="java.text.SimpleDateFormat"
-    import="java.lang.Integer"
+    		import="java.util.Calendar" 
+    		import="java.text.SimpleDateFormat"
+    		import="java.lang.Integer"
      %>
     <%
     	Date date = new Date();
@@ -20,9 +20,6 @@
    		request.setAttribute("year",year);
    		request.setAttribute("month",month);
    		request.setAttribute("day",day);
-   		request.setAttribute("hour",hour);
-   		request.setAttribute("minute",minute);
-   		request.setAttribute("second",second);
     %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -50,12 +47,18 @@
         
     </head>
     <script type="text/javascript">
-
+	
+    
+    
+    
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     var ue = UE.getEditor('editor');
 
-
+	function tiJiao(){
+		document.getElementById("neiRong").value = UE.getEditor('editor').getContentTxt();
+		document.getElementById('biaoDan').submit();
+	}
     function isFocus(e){
         alert(UE.getEditor('editor').isFocus());
         UE.dom.domUtils.preventDefault(e)
@@ -166,24 +169,19 @@
         
         <script type="text/javascript" src="${ctx }/content/settings/main.js"></script>
 		<link rel="stylesheet" href="${ctx }/content/settings/style.css" />
-
-
- 
         <!--              
                 HEAD
                         --> 
         <div id="head">
           
         </div>
-                
-                
         <!--            
                 SIDEBAR
                          --> 
 		<div id="sidebar">
             <ul>
                 <li>
-                    <a href="index.jsp">
+                    <a>
                         <img src="${ctx }/img/icons/menu/inbox.png" alt="" />
                         欢迎
                     </a>
@@ -194,7 +192,7 @@
                           <li><a href="${ctx }/news/list_rd">热点</a></li>
                           <li><a href="${ctx }/news/list_gj">国际</a></li>
                           <li><a href="${ctx }/news/list_xn">校内</a></li>
-                          <li class="current"><a href="${ctx }/formsXW.jsp">添加新闻</a></li>
+                          <li class="current"><a href="${ctx }/formsXW.jsp?action='add'">添加新闻</a></li>
                           <li><a href="${ctx }/formLB.jsp">添加首页轮播图</a></li>
                     </ul>
                 </li>
@@ -208,37 +206,33 @@
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/factory.png" alt="" /> 疑难问题管理</a>
                     <ul>
-                        <li><a href="table.jsp?p=table">韩国专区</a></li>
-                        <li><a href="table.jsp?p=table">日本专区</a></li>
-                        <li><a href="table.jsp?p=table">印尼巴西专区</a></li>
-                        <li><a href="forms.jsp?p=forms">添加专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=校内">校内专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=国外">国外专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=新生">新生专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=常见">常见问题专区</a></li>
+                        <li><a href="${ctx}/formsYN.jsp">添加专区</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/lab.png" alt="" />学生管理</a>
                     <ul>
-                        <li><a href="tableXShg.jsp">韩国学生</a></li>
-                        <li><a href="tableXSyn.jsp">印尼学生</a></li>
-                        <li><a href="tableXSbx.jsp">巴西学生</a></li>
-                        <li><a href="tableXSrb.jsp">日本学生</a></li>
-                        <li><a href="formsXS.jsp">添加学生</a></li>
+                        <li><a href="${ctx}/student/list_hg">韩国学生</a></li>
+                        <li><a href="${ctx }/student/list_yn">印尼学生</a></li>
+                        <li><a href="${ctx }/student/list_bx">巴西学生</a></li>
+                        <li><a href="${ctx }/student/list_rb">日本学生</a></li>
+                        <li><a href="${ctx }/formsXS.jsp">添加学生</a></li>
                      </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/flag.png" alt="" />定向消息</a>
                     <ul>
-                        <li><a href="tableDXhg.jsp">韩国消息</a></li>
-                        <li><a href="tableDXyn.jsp">印尼消息</a></li>
-                        <li><a href="tableDXbx.jsp">巴西消息</a></li>
-                        <li><a href="tableDXrb.jsp">日本消息</a></li>
-                        <li><a href="formsDX.jsp">添加消息</a></li>
+                        <li><a href="${ctx }/news/list_dxhg">韩国消息</a></li>
+                        <li><a href="${ctx }/news/list_dxyn">印尼消息</a></li>
+                        <li><a href="${ctx }/news/list_dxbx">巴西消息</a></li>
+                        <li><a href="${ctx }/news/list_dxrb">日本消息</a></li>
+                        <li><a href="${ctx}/formsDX.jsp">添加消息</a></li>
                      </ul>
                 </li>
             </ul>
-
-
         </div>  
-                
-                
-                
         <!--            
               CONTENT 
                         --> 
@@ -250,107 +244,8 @@
         新建新闻
       </div>
    <div class="content">
-   
-   <!-- *******************************edit********************************************** -->
-        <c:if test="${action=='edit' }">
-	 <form action="${ctx }/news/edit" method="post">	
-     <div class="content">
-     <div class="right">
-        <div class="input">
-            <label for="input4" name="time">时间</label>
-            <input type="text" name="time" class="datepicker" id="input4"  value="${month}/${day}/${year}"/>
-        </div>
-    </div> 
-    </div> 
-        <div class="input">
-            <label for="input1">标题</label>
-            <input type="text" name="biaoTi" id="input1" value="${biaoTi}" />
-            <input type="hidden" name="id_news"/>
-        </div>
-        <br/>
-        <br/>
-  
-    <div class="input">
-            <label for="label">定向新闻(若选择此选项则直接进行定向消息推送)</label>
-            <!-- 默认选定属性 checked="checked" -->
-            <input type="checkbox" id="check1" name="isJapanese" value="${isJapanese}"/> 
-            <label for="check1" class="inline">日本</label> 
-            <input type="checkbox" id="check2" name="isKorean"  value="${isKorean}"/>
-            <label for="check2" class="inline">韩国</label> 
-            <input type="checkbox" id="check3" name="isIndonesians"  value="${isIndonesians}"/>
-            <label for="check3" class="inline">印尼</label> 
-            <input type="checkbox" id="check4" name="isBrazilians" value="${isBrazilians}"/>
-            <label for="check4" class="inline">巴西</label> <br/>
-    </div>
-
-    <br/>
-
-    <div class="input">
- 
-            <label for="label">指定推送模块</label>
-			
-            <!-- 默认选定属性 checked="checked" -->
-            <input type="radio" name="leiXing" id="check1" value="公告"/> 
-            <label class="inline">公告</label> 
-            <input type="radio" name="leiXing" id="check2" value="热点"/>
-            <label class="inline">热点</label> 
-            <input type="radio" name="leiXing" id="check3" value="国际"/>
-            <label class="inline">国际</label> 
-            <input type="radio" name="leiXing" id="check4" value="校内"/>
-            <label class="inline">校内</label> 
-    </div>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <div class="input">
-    <label for="input3">内容</label>
-    <input type="hidden" name="neiRongURL">
-    <script id="editor" type="text/plain"  name="neiRongURL" value="${neiRongURL}" style="width:1024px;height:500px;"></script>
-    </div>
- 		<div id="btns">
-    	<div>
-        <button onclick="getAllHtml()">获得整个html的内容</button>
-        <button onclick="getContent()">获得内容</button>
-        <button onclick="setContent()">写入内容</button>
-        <button onclick="setContent(true)">追加内容</button>
-        <button onclick="getContentTxt()">获得纯文本</button>
-        <button onclick="getPlainTxt()">获得带格式的纯文本</button>
-        <button onclick="hasContent()">判断是否有内容</button>
-        <button onclick="setFocus()">使编辑器获得焦点</button>
-        <button onmousedown="isFocus(event)">编辑器是否获得焦点</button>
-        <button onmousedown="setblur(event)" >编辑器失去焦点</button>
-    </div>
-    <div>
-        <button onclick="getText()">获得当前选中的文本</button>
-        <button onclick="insertHtml()">插入给定的内容</button>
-        <button id="enable" onclick="setEnabled()">可以编辑</button>
-        <button onclick="setDisabled()">不可编辑</button>
-        <button onclick=" UE.getEditor('editor').setHide()">隐藏编辑器</button>
-        <button onclick=" UE.getEditor('editor').setShow()">显示编辑器</button>
-        <button onclick=" UE.getEditor('editor').setHeight(300)">设置高度为300默认关闭了自动长高</button>
-    </div>
-
-    <div>
-        <button onclick="getLocalData()" >获取草稿箱内容</button>
-        <button onclick="clearLocalData()" >清空草稿箱</button>
-    </div>
-</div>
-<div>
-    <button onclick="createEditor()">
-    创建编辑器</button>
-    <button onclick="deleteEditor()">
-    删除编辑器</button>
-</div>
-        <div class="submit">
-        <input type="submit" value="新增" />
-        </div>  
-        </form>
-		</c:if>
-		<!-- *************************/edit******************************************************* -->
-		<c:if test="${action!='edit' }">
-		<form action="${ctx }/news/add" method="post">
+   		<c:if test="${action!='edit' }">
+		<form id="biaoDan" action="${ctx }/news/add" method="post">
 		
      <div class="content">
      <div class="right">
@@ -405,6 +300,7 @@
     <label for="input3">内容</label>
     <script id="editor" name="neiRongURL" type="text/plain" style="width:1024px;height:500px;"></script>
     </div>
+    <input type = "hidden" name="neiRong" id="neiRong"/>
  		<div id="btns">
     	<div>
         <button onclick="getAllHtml()">获得整个html的内容</button>
@@ -439,10 +335,187 @@
     删除编辑器</button>
 </div>
         <div class="submit">
-        <input type="submit" value="新增" />
+        <input type="button" value="新增" onclick="tiJiao();"/>
         </div>
         	</form>
 			</c:if>
+   <!-- *******************************edit********************************************** -->
+        <c:if test="${action=='edit' }">
+        <%session.setAttribute("action", "add");%>
+	 <form id="biaoDan" action="${ctx }/news/edit" method="post">	
+     <div class="content">
+     <div class="right">
+        <div class="input">
+            <label for="input4" name="time">时间</label>
+            <input type="text" name="time" class="datepicker" id="input4"  value="${month}/${day}/${year}"/>
+        </div>
+    </div> 
+    </div> 
+        <div class="input">
+            <label for="input1">标题</label>
+            <input type="text" name="biaoTi" id="input1" value="${news03.biaoTi}" />
+            <input type="hidden" name="id_news"/>
+        </div>
+        <br/>
+        <br/>
+    <div class="input">
+            <div class="input">
+            <label for="label">定向新闻(若选择此选项则直接进行定向消息推送)</label>
+            <!-- 默认选定属性 checked="checked"-->
+            <c:if test="${news03.isJapanese}">   
+				 <input type="checkbox" id="check1" name="isJapanese" checked="checked"/> 
+            	<label for="check1" class="inline">日本</label>	
+			</c:if>
+			<c:if test="${!news03.isJapanese}">
+				 <input type="checkbox" id="check1" name="isJapanese"/> 
+            	<label for="check1" class="inline">日本</label>	
+			</c:if> 
+			<c:if test="${news03.isKorean}">   
+				 <input type="checkbox" id="check1" name="isKorean" checked="checked"/> 
+            	<label for="check1" class="inline">韩国</label>	
+			</c:if>
+			<c:if test="${!news03.isKorean}">
+				 <input type="checkbox" id="check1" name="isKorean" /> 
+            	<label for="check1" class="inline">韩国</label>	
+			</c:if> 
+			<c:if test="${news03.isIndonesians}">   
+				 <input type="checkbox" id="check1" name="isIndonesians"  checked="checked"/> 
+            	<label for="check1" class="inline">印尼</label>	
+			</c:if>
+			<c:if test="${!news03.isIndonesians}">
+				 <input type="checkbox" id="check1" name="isIndonesians" /> 
+            	<label for="check1" class="inline">印尼</label>	
+			</c:if> 
+			<c:if test="${news03.isBrazilians}">   
+				 <input type="checkbox" id="check1" name="isBrazilians" checked="checked"/> 
+            	<label for="check1" class="inline">巴西</label>	
+			</c:if>
+			<c:if test="${!news03.isBrazilians}">
+				 <input type="checkbox" id="check1" name="isBrazilians" /> 
+            	<label for="check1" class="inline">巴西</label>	
+			</c:if> 
+            </div>
+    </div>
+
+    <br/>
+
+    <div class="input">
+ 
+            <label for="label">指定推送模块</label>
+			
+            <!-- 默认选定属性 checked="checked" -->
+            <!-- ><input type="radio" name="leiXing" id="check1" value="公告"/> 
+            <label class="inline">公告</label> 
+            <input type="radio" name="leiXing" id="check2" value="热点"/>
+            <label class="inline">热点</label> 
+            <input type="radio" name="leiXing" id="check3" value="国际"/>
+            <label class="inline">国际</label> 
+            <input type="radio" name="leiXing" id="check4" value="校内"/>
+            <label class="inline">校内</label> -->
+            
+			<c:choose>
+            <c:when test="${news03.leiXing=='公告'}">
+            <input type="radio" id="check1" name="leiXing" value="公告" checked="checked"/> 
+            	<label for="check1" class="inline">公告</label>	
+            	 <input type="radio" id="check2" name="leiXing" value="热点" /> 
+            	<label for="check2" class="inline">热点</label>	
+            	<input type="radio" id="check3" name="leiXing" value="国际" /> 
+            	<label for="check3" class="inline">国际</label>	
+            	 <input type="radio" id="check4" name="leiXing" value="校内" /> 
+            	<label for="check4" class="inline">校内</label>	
+           </c:when>
+           <c:when test="${news03.leiXing=='热点'}">
+               <input type="radio" id="check1" name="leiXing" value="公告" /> 
+            	<label for="check1" class="inline">公告</label>	
+            	 <input type="radio" id="check2" name="leiXing" value="热点" checked="checked"/> 
+            	<label for="check2" class="inline">热点</label>	
+            	<input type="radio" id="check3" name="leiXing" value="国际" /> 
+            	<label for="check3" class="inline">国际</label>	
+            	 <input type="radio" id="check4" name="leiXing" value="校内" /> 
+            	<label for="check4" class="inline">校内</label>	
+            </c:when>
+            <c:when test="${news03.leiXing=='国际'}">
+             <input type="radio" id="check1" name="leiXing" value="公告" /> 
+            	<label for="check1" class="inline">公告</label>	
+            	 <input type="radio" id="check2" name="leiXing" value="热点" /> 
+            	<label for="check2" class="inline">热点</label>	
+            	<input type="radio" id="check3" name="leiXing" value="国际" checked="checked"/> 
+            	<label for="check3" class="inline">国际</label>	
+            	 <input type="radio" id="check4" name="leiXing" value="校内" /> 
+            	<label for="check3" class="inline">校内</label>	
+            </c:when>
+            <c:when test="${news03.leiXing=='校内'}">
+            <input type="radio" id="check1" name="leiXing" value="公告" /> 
+            	<label for="check1" class="inline">公告</label>	
+            	 <input type="radio" id="check2" name="leiXing" value="热点" /> 
+            	<label for="check2" class="inline">热点</label>	
+            	<input type="radio" id="check3" name="leiXing" value="国际" /> 
+            	<label for="check3" class="inline">国际</label>	
+            	 <input type="radio" id="check4" name="leiXing" value="校内"  checked="checked"/> 
+            	<label for="check4" class="inline">校内</label>	
+            </c:when>
+            <c:otherwise>
+             <input type="radio" id="check1" name="leiXing" value="公告" /> 
+            	<label for="check1" class="inline">公告</label>	
+            	 <input type="radio" id="check2" name="leiXing" value="热点" /> 
+            	<label for="check2" class="inline">热点</label>	
+            	<input type="radio" id="check3" name="leiXing" value="国际" /> 
+            	<label for="check3" class="inline">国际</label>	
+            	 <input type="radio" id="check4" name="leiXing" value="校内"  checked="checked"/> 
+            	<label for="check4" class="inline">校内</label>	
+            </c:otherwise>
+            </c:choose>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="input">
+    <label for="input3">内容</label>
+    <script id="editor" type="text/plain"  name="neiRongURL"style="width:1024px;height:500px;">${news03.neiRongURL}</script>
+    </div>
+    	<input type ="hidden" name="neiRong" id="neiRong"/>
+ 		<div id="btns">
+    	<div>
+        <button onclick="getAllHtml()">获得整个html的内容</button>
+        <button onclick="getContent()">获得内容</button>
+        <button onclick="setContent()">写入内容</button>
+        <button onclick="setContent(true)">追加内容</button>
+        <button onclick="getContentTxt()">获得纯文本</button>
+        <button onclick="getPlainTxt()">获得带格式的纯文本</button>
+        <button onclick="hasContent()">判断是否有内容</button>
+        <button onclick="setFocus()">使编辑器获得焦点</button>
+        <button onmousedown="isFocus(event)">编辑器是否获得焦点</button>
+        <button onmousedown="setblur(event)" >编辑器失去焦点</button>
+    </div>
+    <div>
+        <button onclick="getText()">获得当前选中的文本</button>
+        <button onclick="insertHtml()">插入给定的内容</button>
+        <button id="enable" onclick="setEnabled()">可以编辑</button>
+        <button onclick="setDisabled()">不可编辑</button>
+        <button onclick=" UE.getEditor('editor').setHide()">隐藏编辑器</button>
+        <button onclick=" UE.getEditor('editor').setShow()">显示编辑器</button>
+        <button onclick=" UE.getEditor('editor').setHeight(300)">设置高度为300默认关闭了自动长高</button>
+    </div>
+
+    <div>
+        <button onclick="getLocalData()" >获取草稿箱内容</button>
+        <button onclick="clearLocalData()" >清空草稿箱</button>
+    </div>
+</div>
+<div>
+    <button onclick="createEditor()">
+    创建编辑器</button>
+    <button onclick="deleteEditor()">
+    删除编辑器</button>
+</div>
+        <div class="submit">
+        <input type="button" value="新增" onclick="tiJiao();"/>
+        </div>  
+        </form>
+		</c:if>
+		<!-- *************************/edit******************************************************* -->
     </div>
     </div>
 </div>
