@@ -74,16 +74,15 @@ public class NewsDaoImpl extends BaseDao<News,Integer> {
 			params[0]="%" + params[0]+"%";
 		}else{
 			if(guoji.equals("巴西")){				
-				hql="from News news where news.isBrazilians=true";
+				hql="from News news where news.isBrazilians=true order by news.id_news desc";
 			}else if(guoji.equals("韩国")){				
-				hql="from News news where news.isKorean=true";
+				hql="from News news where news.isKorean=true order by news.id_news desc";
 			}else if(guoji.equals("印尼")){				
-				hql="from News news where news.isIndonesians=true";
+				hql="from News news where news.isIndonesians=true order by news.id_news desc";
 			}else if(guoji.equals("日本")){				
-				hql="from News news where news.isJapanese=true";
+				hql="from News news where news.isJapanese=true order by news.id_news desc";
 			}else{
 				hql="from News";
-				System.out.println("国籍参数有误");
 			}
 		}
 		try{

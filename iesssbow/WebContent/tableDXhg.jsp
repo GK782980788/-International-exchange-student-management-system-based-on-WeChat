@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -65,15 +66,15 @@
                          <li><a href="${ctx }/news/list_gj">国际</a></li>
                          <li><a href="${ctx }/news/list_xn">校内</a></li>
                          <li><a href="${ctx }/formsXW.jsp">添加新闻</a></li>
-                         <li><a href="${ctx }/formLB.jsp">添加首页轮播图</a></li>
+                         <li><a href="${ctx }/shouyelunbotu/list">添加首页轮播图</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx}/img/icons/menu/brush.png" alt="" /> 信息管理</a>
                     <ul>
-                        <li><a href="table.jsp?p=table">学生基本信息表</a></li>
-                        <li><a href="table.jsp?p=table">奖学金申请表</a></li>
-                        <li><a href="table.jsp?p=table">助学金申请表</a></li>
-                        <li><a href="forms.jsp?p=forms">添加申请表</a></li>
+                        <li><a href="${ctx}/xxtx/list">信息模板一</a></li>
+                        <li><a href="#">信息模板二</a></li>
+                        <li><a href="#">信息模板三</a></li>
+                        <li><a href="${ctx }/formsXX.jsp">添加申请表</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx}/img/icons/menu/factory.png" alt="" /> 疑难问题管理</a>
@@ -131,11 +132,11 @@
 				<c:forEach items="${page.list}" var="p">
 					<tr>
 						<td>${p.biaoTi}</td>
-						<td>${p.time}</td>
+						<td><fmt:formatDate value="${p.time}" pattern ="yyyy-MM-dd"></fmt:formatDate></td>
 						<td>${p.neiRong}</td>
 						<td style="text-align:right;">
 						<a href="${ctx }/news/edit_dx?id_news=${p.id_news }" title="编辑信息"><img style="border: 1px sold #ccc; padding-left:20px;padding-right:45px;" src="${ctx }/img/icons/actions/edit.png"/></a>
-						<a href="${ctx }/news/delete?id_news=${p.id_news }" title="删除信息"><img src="${ctx }/img/icons/actions/delete.png"/></a>
+						<a href="${ctx }/news/delete_dxhg?id_news=${p.id_news }" title="删除信息"><img src="${ctx }/img/icons/actions/delete.png"/></a>
 						</td>
 					</tr>
 				</c:forEach>

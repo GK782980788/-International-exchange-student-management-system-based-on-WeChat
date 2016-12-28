@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <% response.setContentType("text/html;charset=UTF-8"); %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE HTML>
 <html>
@@ -21,7 +22,7 @@
 	<body>
 		<article class="article">
   <header>
-    <img src="${ctx }/images/img4.jpg" width="1316px" height="400px" class="img-responsive" alt="响应式图片测试">
+    <img src="${ctx }/images/sky2.jpg" width="1316px" height="400px" class="img-responsive" alt="响应式图片测试">
   </header>
   <div class="list list-condensed">
   <header>
@@ -38,10 +39,10 @@
       <div class="item-heading">
         
         <h4>${p.biaoTi }</h4>
-        <div class="pull-right"><span class="text-muted">${p.time}</span> </div>
+        <div ><span class="text-muted"><fmt:formatDate value="${p.time}" pattern ="yyyy-MM-dd"></fmt:formatDate></span> </div>
       </div>
       <div class="item-content">
-        <div class="text">${p.neiRong }</div>
+        <div style="max-height:100px;overflow:hidden;" class="text">${p.neiRong }</div>
       </div>
     </div>
     </a>

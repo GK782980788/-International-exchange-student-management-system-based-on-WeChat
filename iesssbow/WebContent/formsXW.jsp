@@ -73,7 +73,7 @@
     }
     function createEditor() {
         enableBtn();
-        UE.getEditor('editor');
+        UE.getEditor('editor',{'enterTag':''});
     }
     function getAllHtml() {
         alert(UE.getEditor('editor').getAllHtml())
@@ -193,15 +193,15 @@
                           <li><a href="${ctx }/news/list_gj">国际</a></li>
                           <li><a href="${ctx }/news/list_xn">校内</a></li>
                           <li class="current"><a href="${ctx }/formsXW.jsp?action='add'">添加新闻</a></li>
-                          <li><a href="${ctx }/formLB.jsp">添加首页轮播图</a></li>
+                          <li><a href="${ctx }/shouyelunbotu/list">添加首页轮播图</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/brush.png" alt="" /> 信息管理</a>
                     <ul>
-                        <li><a href="table.jsp?p=table">学生基本信息表</a></li>
-                        <li><a href="table.jsp?p=table">奖学金申请表</a></li>
-                        <li><a href="table.jsp?p=table">助学金申请表</a></li>
-                        <li><a href="forms.jsp?p=forms">添加申请表</a></li>
+                        <li><a href="${ctx}/xxtx/list">信息模板一</a></li>
+                        <li><a href="#">信息模板二</a></li>
+                        <li><a href="#">信息模板三</a></li>
+                        <li><a href="${ctx }/formsXX.jsp">添加申请表</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/factory.png" alt="" /> 疑难问题管理</a>
@@ -250,14 +250,14 @@
      <div class="content">
      <div class="right">
         <div class="input">
-            <label for="input4" name="time">时间</label>
+            <label for="input4" id="time" name="time">时间</label>
             <input type="text" name="time" class="datepicker" id="input4" value="${month}/${day}/${year}"/>
         </div>
     </div> 
     </div> 
         <div class="input">
             <label for="input1">标题</label>
-            <input type="text" name="biaoTi" id="input1" />
+            <input id="biaoTi" type="text" name="biaoTi" id="input1" />
         </div>
         <br/>
         <br/>
@@ -298,7 +298,7 @@
     <br/>
     <div class="input">
     <label for="input3">内容</label>
-    <script id="editor" name="neiRongURL" type="text/plain" style="width:1024px;height:500px;"></script>
+    <script id="editor" name="neiRongURL" id="neiRongURL" type="text/plain" style="width:1024px;height:500px;"></script>
     </div>
     <input type = "hidden" name="neiRong" id="neiRong"/>
  		<div id="btns">
@@ -353,7 +353,7 @@
     </div> 
         <div class="input">
             <label for="input1">标题</label>
-            <input type="text" name="biaoTi" id="input1" value="${news03.biaoTi}" />
+            <input type="text" name="biaoTi" id="biaoTi" value="${news03.biaoTi}" />
             <input type="hidden" name="id_news"/>
         </div>
         <br/>
@@ -415,23 +415,23 @@
             
 			<c:choose>
             <c:when test="${news03.leiXing=='公告'}">
-            <input type="radio" id="check1" name="leiXing" value="公告" checked="checked"/> 
+            <input type="radio" id="leiXing" name="leiXing" value="公告" checked="checked"/> 
             	<label for="check1" class="inline">公告</label>	
-            	 <input type="radio" id="check2" name="leiXing" value="热点" /> 
+            	 <input type="radio" id="leiXing" name="leiXing" value="热点" /> 
             	<label for="check2" class="inline">热点</label>	
-            	<input type="radio" id="check3" name="leiXing" value="国际" /> 
+            	<input type="radio" id="leiXing" name="leiXing" value="国际" /> 
             	<label for="check3" class="inline">国际</label>	
-            	 <input type="radio" id="check4" name="leiXing" value="校内" /> 
+            	 <input type="radio" id="leiXing" name="leiXing" value="校内" /> 
             	<label for="check4" class="inline">校内</label>	
            </c:when>
            <c:when test="${news03.leiXing=='热点'}">
-               <input type="radio" id="check1" name="leiXing" value="公告" /> 
+               <input type="radio" id="leiXing" name="leiXing" value="公告" /> 
             	<label for="check1" class="inline">公告</label>	
-            	 <input type="radio" id="check2" name="leiXing" value="热点" checked="checked"/> 
+            	 <input type="radio" id="leiXing" name="leiXing" value="热点" checked="checked"/> 
             	<label for="check2" class="inline">热点</label>	
-            	<input type="radio" id="check3" name="leiXing" value="国际" /> 
+            	<input type="radio" id="leiXing" name="leiXing" value="国际" /> 
             	<label for="check3" class="inline">国际</label>	
-            	 <input type="radio" id="check4" name="leiXing" value="校内" /> 
+            	 <input type="radio" id="leiXing" name="leiXing" value="校内" /> 
             	<label for="check4" class="inline">校内</label>	
             </c:when>
             <c:when test="${news03.leiXing=='国际'}">
@@ -473,7 +473,7 @@
     <br/>
     <div class="input">
     <label for="input3">内容</label>
-    <script id="editor" type="text/plain"  name="neiRongURL"style="width:1024px;height:500px;">${news03.neiRongURL}</script>
+    <script id="editor" type="text/plain"  name="neiRongURL" id="neiRongURL" style="width:1024px;height:500px;">${news03.neiRongURL}</script>
     </div>
     	<input type ="hidden" name="neiRong" id="neiRong"/>
  		<div id="btns">

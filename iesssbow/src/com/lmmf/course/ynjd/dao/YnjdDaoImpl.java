@@ -44,8 +44,10 @@ public class YnjdDaoImpl extends BaseDao<Ynjd,Integer> {
 	}
 	public Page<Ynjd> findYnjd(int pageNum,int pageSize,Object[] params,String leiXing){
 		String hql;
+		System.out.println("进入findYnjd");
 		if(params!=null&&params.length>0){
-			hql="from Ynjd ynjd where ynjd.answer like ?";
+			System.out.println("进入搜索");
+			hql="from Ynjd ynjd where ynjd.question like ?";
 			params[0]="%" + params[0]+"%";
 		}else{			
 			hql="from Ynjd ynjd where ynjd.leiXing="+"'"+leiXing+"'"+"order by id_YN desc";

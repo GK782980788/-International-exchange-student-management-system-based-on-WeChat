@@ -1,12 +1,10 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%response.setContentType("text/html;charset=UTF-8");%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0109)file:///C:/Users/%E9%83%AD%E5%8F%AF/Desktop/%E5%90%8E%E5%8F%B0%E7%95%8C%E9%9D%A2%E6%9C%80%E6%96%B0/login.html -->
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>欢迎登录后台管理系统</title>
 <link href="./login_files/style.css" rel="stylesheet" type="text/css">
 <script language="JavaScript" src="./login_files/jquery.js"></script>
@@ -51,23 +49,18 @@ background-position: -294.3px 0px; background-repeat: no-repeat;">
     </div>
     
     <div class="loginbody">
-    
     <span class="systemlogo"></span> 
-    
     <form name="loginForm" action="${ctx}/loginuser/login" method="post">
-    
     <div class="loginbox" style="position: absolute; left: -12.5px;">
     <ul>
     <li><input name="userName" type="text" class="loginuser" value="admin" ></li>
     <li><input name="password" type="password" class="loginpwd" value="12345678" ></li>
     <li><input type="button" class="loginbtn" value="登录" onclick="login()"><label>
     <input name="" type="checkbox" value="" checked="checked">记住密码</label><label>
-    <a href="file:///C:/Users/%E9%83%AD%E5%8F%AF/Desktop/%E5%90%8E%E5%8F%B0%E7%95%8C%E9%9D%A2%E6%9C%80%E6%96%B0/login.html#">忘记密码？</a>
+    <a>忘记密码？</a>
     </label></li>
     </ul>
     </div>
-    
     </form>
-    
     </div>
 </body></html>

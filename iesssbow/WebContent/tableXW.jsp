@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title>新闻列表</title>
+        <title>信息列表</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
         
@@ -25,19 +25,14 @@
         
         <script type="text/javascript" src="content/settings/main.js"></script>
 <link rel="stylesheet" href="content/settings/style.css" />
-
-
- 
         <!--              
                 HEAD
                         --> 
         <div id="head">
             <div class="left">
-                <a href="#" class="button profile"><img src="img/icons/top/huser.png" alt="" /></a>
-                Hi, 
-                <a href="#">John Doe</a>
-                |
-                <a href="#">Logout</a>
+                <a href="#" class="button profile"><img src="${ctx }/img/icons/top/huser.png" alt="" /></a>
+               	您好，
+                ${userName}
             </div>
             <div class="right">
                 <form action="#" id="search" class="search placeholder">
@@ -47,27 +42,25 @@
                 </form>
             </div>
         </div>
-                
-                
         <!--            
                 SIDEBAR
                          --> 
-<div id="sidebar">
+		<div id="sidebar">
             <ul>
                 <li>
-                    <a href="index.jsp">
+                    <a>
                         <img src="img/icons/menu/inbox.png" alt="" />
                         欢迎
                     </a>
                 </li>
                 <li  class="current"><a href="#"><img src="img/icons/menu/layout.png" alt="" /> 新闻管理</a>
                     <ul>
-                                                <li class="current"><a href="tableXW.jsp?p=table">公告</a></li>
-                                                <li><a href="tableXW.jsp?p=table">热点</a></li>
-                                                <li><a href="tableXW.jsp?p=table">国际新闻</a></li>
-                                                <li><a href="tableXW.jsp?p=table">校内新闻</a></li>
-                                                <li><a href="formsXW.jsp">添加新闻</a></li>
-                                                <li><a href="formLB.jsp">添加首页轮播图</a></li>
+                        <li class="current"><a href="tableXW.jsp?p=table">公告</a></li>
+                        <li><a href="tableXW.jsp?p=table">热点</a></li>
+                        <li><a href="tableXW.jsp?p=table">国际新闻</a></li>
+                        <li><a href="tableXW.jsp?p=table">校内新闻</a></li>
+                        <li><a href="formsXW.jsp">添加新闻</a></li>
+                        <li><a href="formLB.jsp">添加首页轮播图</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="img/icons/menu/brush.png" alt="" /> 信息管理</a>

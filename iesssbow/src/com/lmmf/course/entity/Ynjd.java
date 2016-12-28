@@ -6,8 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
+/**
+ * 由郭可完成
+ * 需要有增删改查
+ */
 @Entity
 @Table(name="ynjd")
 public class Ynjd {

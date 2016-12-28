@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lmmf.course.entity.News;
 import com.lmmf.course.entity.Ynjd;
 import com.lmmf.course.ynjd.service.YnjdServiceImpl;
 import com.lmmf.framework.Page;
@@ -41,6 +42,13 @@ public class YnjdController {
 		return "questionindex";
 	}
 	
+	@RequestMapping("content")
+	public String content(@RequestParam("id_YN") int id_YN,HttpServletRequest request){
+	Ynjd ynjd = this.ynjdServiceImpl.getYnjd(id_YN);
+	HttpSession session = request.getSession();
+	session.setAttribute("xx_news",ynjd);
+	return "contentYN";
+	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
 	public String add(Ynjd ynjd,HttpServletRequest request){
@@ -123,6 +131,28 @@ public class YnjdController {
 			return "forward:list";
 	}
 	
+	@RequestMapping(value="list_three")
+	public String list_three(@RequestParam(name="pageNum",defaultValue="1")int pageNum,
+			@RequestParam(name="searchParam",defaultValue="")String searchParam,
+			@RequestParam(name="leiXing")String leiXing,
+			HttpServletRequest request,
+			Model model){
+		Page<Ynjd> page;
+		try {
+		leiXing = new String(leiXing.getBytes("iso-8859-1"),"utf-8");
+		} catch (UnsupportedEncodingException e1) {
+		e1.printStackTrace();
+		}
+		if(searchParam==null||"".equals(searchParam)){
+			page=this.ynjdServiceImpl.listYnjd(pageNum,10,null,leiXing);
+		}else{
+			page=this.ynjdServiceImpl.listYnjd(pageNum,10,new Object[]{searchParam},leiXing);
+		}			
+		request.setAttribute("leiXing", leiXing);
+		request.setAttribute("page",page);
+		request.setAttribute("searchParam",searchParam);
+		return "questionlist";
+	}
 	@RequestMapping(value="list")
 	public String list(@RequestParam(name="pageNum",defaultValue="1")int pageNum,
 			@RequestParam(name="searchParam",defaultValue="")String searchParam,
@@ -146,15 +176,19 @@ public class YnjdController {
 		return "tableYN";
 	}
 	
-	
-	
-	@RequestMapping(value="list_qt")
-	public String list_qt(@RequestParam(name="pageNum",defaultValue="1")int pageNum,
+	@RequestMapping(value="list_find")
+	public String list_find(@RequestParam(name="pageNum",defaultValue="1")int pageNum,
 			@RequestParam(name="searchParam",defaultValue="")String searchParam,
+			@RequestParam(name="leiXing")String leiXing,
 			HttpServletRequest request,
 			Model model){
 		Page<Ynjd> page;
-		String leiXing = (String)request.getAttribute("leiXing");
+		System.out.println("searchParam"+searchParam);
+		try {
+		searchParam = new String(searchParam.getBytes("iso-8859-1"),"utf-8");
+		} catch (UnsupportedEncodingException e1) {
+		e1.printStackTrace();
+		}
 		try {
 		leiXing = new String(leiXing.getBytes("iso-8859-1"),"utf-8");
 		} catch (UnsupportedEncodingException e1) {

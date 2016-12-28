@@ -72,10 +72,10 @@
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/brush.png" alt="" /> 信息管理</a>
                     <ul>
-                        <li><a href="${ctx }/table.jsp?p=table">学生基本信息表</a></li>
-                        <li><a href="${ctx }/table.jsp?p=table">奖学金申请表</a></li>
-                        <li><a href="${ctx }/table.jsp?p=table">助学金申请表</a></li>
-                        <li><a href="${ctx }/forms.jsp?p=forms">添加申请表</a></li>
+                        <li><a href="${ctx}/xxtx/list">信息模板一</a></li>
+                        <li><a href="#">信息模板二</a></li>
+                        <li><a href="#">信息模板三</a></li>
+                        <li><a href="${ctx }/formsXX.jsp">添加申请表</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/factory.png" alt="" /> 疑难问题管理</a>
@@ -125,15 +125,15 @@
             <img src="${ctx }/img/ico01.png" alt="" />
             公告
         </a>
-        <a href="${ctx }/binformation" class="shortcut">
+        <a href="${ctx}/xxtx/list" class="shortcut">
             <img src="${ctx }/img/ico02.png" alt=""  width="32" height="32"/>
             学生基本信息表
         </a>
-        <a href="${ctx }/cus.html" class="shortcut">
+        <a href="${ctx}/ynjd/list?leiXing=国外"" class="shortcut">
             <img src="${ctx }/img/ico03.png" alt=""  width="32" height="32"/>
-             留美专区
+      国外专区
         </a>
-        <a href="${ctx }/dmessage.html" class="shortcut">
+        <a href="${ctx }/news/list_dxbx" class="shortcut">
             <img src="${ctx }/img/ico04.png" alt=""  width="32" height="32"/>
             消息管理
         </a>
@@ -141,7 +141,7 @@
             <img src="${ctx }/img/ico05.png" alt=""  width="32" height="32"/>
             热点
         </a>
-        <a href="common.html" class="shortcut">
+        <a href="${ctx}/ynjd/list?leiXing=常见" class="shortcut">
             <img src="${ctx }/img/ico06.png" alt=""  width="32" height="32"/>
             常见问题
         </a>

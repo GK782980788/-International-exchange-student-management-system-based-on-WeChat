@@ -50,12 +50,9 @@ public class LunBoTuController {
 			pictureURL_href = new String(pictureURL_href.getBytes("iso-8859-1"),"utf-8");
 			lbt.setPictureURL_href(pictureURL_href);	
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		this.lbtServiceImpl.addLunBoTu(lbt);
-		
 		return "redirect:list";
 	}
 	
@@ -88,7 +85,7 @@ public class LunBoTuController {
 	public String list(HttpServletRequest request,Model model)
 	{		
 		Page<LunBoTu> page;
-		page=this.lbtServiceImpl.listLunBoTu(1,3);		
+		page=this.lbtServiceImpl.listLunBoTu(1,5);		
 		request.setAttribute("lbt",page);
 		return "formLB";
 	}
@@ -102,7 +99,41 @@ public class LunBoTuController {
 		request.setAttribute("lbt",page);
 		return "/frontindex";
 	}
-	
-	
+	@RequestMapping(value="list_gg")
+	public String listgg(HttpServletRequest request,Model model)
+	{		
+			
+		Page<LunBoTu> page;
+		page=this.lbtServiceImpl.listLunBoTu(1,3);		
+		request.setAttribute("lbt",page);
+		return "/frontindexgg";
+	}
+	@RequestMapping(value="list_xn")
+	public String listxn(HttpServletRequest request,Model model)
+	{		
+			
+		Page<LunBoTu> page;
+		page=this.lbtServiceImpl.listLunBoTu(1,3);		
+		request.setAttribute("lbt",page);
+		return "/frontindexxn";
+	}
+	@RequestMapping(value="list_rd")
+	public String listrd(HttpServletRequest request,Model model)
+	{		
+			
+		Page<LunBoTu> page;
+		page=this.lbtServiceImpl.listLunBoTu(1,3);		
+		request.setAttribute("lbt",page);
+		return "/frontindexrd";
+	}
+	@RequestMapping(value="list_gj")
+	public String listgj(HttpServletRequest request,Model model)
+	{		
+			
+		Page<LunBoTu> page;
+		page=this.lbtServiceImpl.listLunBoTu(1,3);		
+		request.setAttribute("lbt",page);
+		return "/frontindexgj";
+	}
 }
 	

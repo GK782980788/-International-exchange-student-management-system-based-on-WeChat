@@ -38,6 +38,7 @@ a{
 	width:35%;
 	display: inline-block;	
 	text-align: center;
+	border-top:1px #ccc solid;
 }
 .nav4 li>a>img{
 	display:block; margin:0 auto;

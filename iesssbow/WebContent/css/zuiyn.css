@@ -895,7 +895,6 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
 body {
-  font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
   font-size: 13px;
   line-height: 1.53846154;
   color: #353535;
@@ -1926,8 +1925,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, 'Microsoft Yahei', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
-  font-weight: bold;
+  
   line-height: 1.1;
   color: inherit;
   }
@@ -1951,12 +1949,6 @@ h1 small,
 h2 small,
 h3 small {
   font-size: 65%;
-  }
-h4,
-h5,
-h6 {
-  margin-top: 10px;
-  margin-bottom: 10px;
   }
 h4 small,
 h5 small,
@@ -7984,7 +7976,6 @@ background-color: #F5F5F5;
 .cards {
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-right: -10px;
   margin-left: -10px;
   background-color: #F5F5F5;
   position: relative;

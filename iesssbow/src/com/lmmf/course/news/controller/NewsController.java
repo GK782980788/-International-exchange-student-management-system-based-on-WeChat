@@ -24,11 +24,7 @@ import com.lmmf.framework.Page;
 public class NewsController {
 	@Resource
 	private NewsServiceImpl newsServiceImpl;
-	
-	/**
-	 * 此方法用于前台定向消息展示
-	 */
-	
+
     /*
 	 * 用于前台定向消息的展示（巴西）
 	 * */
@@ -113,7 +109,7 @@ public class NewsController {
 	/*
 	 * 用于定向消息的内容页展示
 	 * */
-	@RequestMapping("neirong")
+	@RequestMapping(value="neirong")
 	public String neirong(@RequestParam(name="id_news")int id_news,HttpServletRequest request){
 		News news = this.newsServiceImpl.getNews(id_news);
 		HttpSession session = request.getSession();
@@ -159,7 +155,7 @@ public class NewsController {
 		List<News>list = page.getList();
 		request.setAttribute("page",page);
 		request.setAttribute("searchParam",searchParam);
-		return "frontindexgg";
+		return "forward:/shouyelunbotu/list_gg";
 	}
 	@RequestMapping("list_qtrd")
 	public String list_qtrd(@RequestParam(name="pageNum",defaultValue="1")int pageNum,
@@ -176,7 +172,7 @@ public class NewsController {
 		List<News>list = page.getList();
 		request.setAttribute("page",page);
 		request.setAttribute("searchParam",searchParam);
-		return "frontindexrd";
+		return "forward:/shouyelunbotu/list_rd";
 	}
 	@RequestMapping("list_qtxn")
 	public String list_qtxn(@RequestParam(name="pageNum",defaultValue="1")int pageNum,
@@ -193,7 +189,7 @@ public class NewsController {
 		List<News>list = page.getList();
 		request.setAttribute("page",page);
 		request.setAttribute("searchParam",searchParam);
-		return "frontindexxn";
+		return "forward:/shouyelunbotu/list_xn";
 	}
 	
 	@RequestMapping("list_qtgj")
@@ -211,14 +207,14 @@ public class NewsController {
 		List<News>list = page.getList();
 		request.setAttribute("page",page);
 		request.setAttribute("searchParam",searchParam);
-		return "frontindexgj";
+		return "forward:/shouyelunbotu/list_gj";
 	}
 	
 	/**
 	 * 用于二级栏目的展示
 	 */
 	
-	@RequestMapping("content")
+	@RequestMapping(value="content",method = RequestMethod.GET)
 	public String content(@RequestParam(name="id_news",defaultValue="1")int id_news,
 			HttpServletRequest request,
 			Model model){
@@ -234,6 +230,13 @@ public class NewsController {
 	
 	@RequestMapping(value="add_dx",method = RequestMethod.POST)
 	public String add_dx(News news){
+		try {
+			String neiRong =news.getNeiRong();
+			neiRong = new String(neiRong.getBytes("iso-8859-1"),"utf-8");
+			news.setNeiRong(neiRong);
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 		try {
 			String neiRongURL =news.getNeiRongURL();
 			neiRongURL = new String(neiRongURL.getBytes("iso-8859-1"),"utf-8");
@@ -373,12 +376,10 @@ public class NewsController {
 		if(news.getLeiXing().equals("校内")){
 			return "redirect:list_xn";			
 		}
-		System.out.println("add未选类型");
 			return "formXWgg";
 	}
 	@RequestMapping(value = "edit",method = RequestMethod.GET)
 	public String toEdit(@RequestParam("id_news") int id_news,HttpServletRequest request){
-		System.out.println("已进入toEdit");
 		News news = this.newsServiceImpl.getNews(id_news);
 		HttpSession session = request.getSession();
 		session.setAttribute("news03",news);
@@ -430,7 +431,6 @@ public class NewsController {
 		if(news.getLeiXing().equals("校内")){
 			return "redirect:list_xn";			
 		}
-		System.out.println("未选类型");
 			return "formXW?action='edit'";
 	}
 	@RequestMapping(value ="delete_rd")

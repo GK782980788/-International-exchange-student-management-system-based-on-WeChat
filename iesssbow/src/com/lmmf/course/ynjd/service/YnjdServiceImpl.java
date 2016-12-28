@@ -19,7 +19,7 @@ public class YnjdServiceImpl {
 	}
 	@Transactional(readOnly=true)
 	public Page<Ynjd> listYnjd(int pageNum,int pageSize,Object[] params,String leiXing){	
-			return this.ynjdDaoImpl.findYnjd(pageNum, pageSize, params,leiXing);
+			return this.ynjdDaoImpl.findYnjd(pageNum,pageSize, params,leiXing);
 	}
 	@Transactional(readOnly=true)
 	public Ynjd getYnjd(int id_YN){

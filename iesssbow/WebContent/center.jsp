@@ -18,7 +18,7 @@
 
   <body>
    <div clasd="black">
-        <h5 class="header-header" align="center" background-color:#E6E6FA; style="color:#696969">我的中心</h5>
+        <h5 align="center"  style="background-color:white;padding-top:4px;">我的中心</h5>
         </hr >
        <div class="n"></div>
     </div>
@@ -51,7 +51,7 @@
    
 
   <!--底栏菜单-->
-<div class="nav4">
+<div class="nav4" >
 
   
     <div id="nav4_ul" class="nav_4">
@@ -63,11 +63,11 @@
         </li>
         
         <li>
-        <a href=""><img src="${ctx }/images/08.png">信息填写</a>
+        <a href="${ctx }/frontxxtx.jsp"><img src="${ctx }/images/08.png">信息填写</a>
           
         </li>
         <li>
-        <a href=""><img src="${ctx }/images/04.png"><span>疑难解答</span></a>
+        <a href="${ctx}/ynjd/index"><img src="${ctx }/images/04.png"><span>疑难解答</span></a>
           
         </li>
           <li>

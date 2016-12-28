@@ -905,7 +905,7 @@ textarea {
   line-height: inherit;
   }
 a {
-  color: #145ccd;
+  color: #000000;
   text-decoration: none;
   -webkit-transition: all .4s cubic-bezier(.175, .885, .32, 1);
        -o-transition: all .4s cubic-bezier(.175, .885, .32, 1);
@@ -913,8 +913,8 @@ a {
   }
 a:hover,
 a:focus {
-  color: #0d3d88;
-  text-decoration: underline;
+  color: #000000;
+  text-decoration: none;
   }
 a:focus {
   outline: thin dotted #333;
@@ -7617,7 +7617,7 @@ tbody.collapse.in {
   border: 1px solid #ddd;
   }
 .article {
-  padding: 20px;
+  padding: 0px;
   }
 .article > header h1,
 .article > header h2,
@@ -7880,7 +7880,7 @@ body.article-content {
   border-bottom: 5px solid #e5e5e5;
   -webkit-transition: all .4s cubic-bezier(.175, .885, .32, 1);
        -o-transition: all .4s cubic-bezier(.175, .885, .32, 1);
-          transition: all .4s cubic-bezier(.175, .885, .32, 1);
+          transition: all .4s cubic-bezier(.175, .885, .32, );
   }
 .items .item-heading > h6,
 .items .item-heading h5,

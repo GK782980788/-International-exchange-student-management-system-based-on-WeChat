@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title>新闻管理-新建新闻</title>
+        <title>新闻管理-新建轮播图</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <script type="text/javascript" charset="utf-8" src="${ctx }/ueditor.config.js"></script>
         <script type="text/javascript" charset="utf-8" src="${ctx }/ueditor.all.min.js"> </script>
@@ -24,25 +24,16 @@
         div img{max-width:100%;} 
         div p{width:200px;}
         </style>
-       
-
-        
         <!-- jQuery AND jQueryUI -->
         <script type="text/javascript" src="${ctx }/js/libs/jquery/1.6/jquery.min.js"></script>
         <script type="text/javascript" src="${ctx }/js/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
-        
-
-        <link rel="stylesheet" href="${ctx }/css/min.css" />
+		<link rel="stylesheet" href="${ctx }/css/min.css" />
         <script type="text/javascript" src="${ctx }/js/min.js"></script>
-        
     </head>
     <script type="text/javascript">
-
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     var ue = UE.getEditor('editor');
-
-
     function isFocus(e){
         alert(UE.getEditor('editor').isFocus());
         UE.dom.domUtils.preventDefault(e)
@@ -91,7 +82,6 @@
         UE.getEditor('editor').setEnabled();
         enableBtn();
     }
-
     function getText() {
         //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
         var range = UE.getEditor('editor').selection.getRange();
@@ -150,17 +140,13 @@
     }
 </script>
     <body>
-        
         <script type="text/javascript" src="${ctx }/content/settings/main.js"></script>
 		<link rel="stylesheet" href="${ctx }/content/settings/style.css" />
         <!--              
                 HEAD
                         --> 
         <div id="head">
-          
-        </div>
-                
-                
+        </div>    
         <!--            
                 SIDEBAR
                          --> 
@@ -179,23 +165,24 @@
                           <li><a href="${ctx }/news/list_gj">国际</a></li>
                           <li><a href="${ctx }/news/list_xn">校内</a></li>
                           <li><a href="${ctx }/formsXW.jsp">添加新闻</a></li>
-                          <li class="current"><a href="${ctx }/shouyelunbotu/add">添加首页轮播图</a></li>
+                          <li class="current"><a href="${ctx }/shouyelunbotu/list">添加首页轮播图</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/brush.png" alt="" /> 信息管理</a>
                     <ul>
-                        <li><a href="table.jsp?p=table">学生基本信息表</a></li>
-                        <li><a href="table.jsp?p=table">奖学金申请表</a></li>
-                        <li><a href="table.jsp?p=table">助学金申请表</a></li>
-                        <li><a href="forms.jsp?p=forms">添加申请表</a></li>
+                        <li><a href="${ctx}/xxtx/list">信息模板一</a></li>
+                        <li><a href="#">信息模板二</a></li>
+                        <li><a href="#">信息模板三</a></li>
+                        <li><a href="${ctx }/formsXX.jsp">添加申请表</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/factory.png" alt="" /> 疑难问题管理</a>
                     <ul>
-                        <li><a href="table.jsp?p=table">韩国专区</a></li>
-                        <li><a href="table.jsp?p=table">日本专区</a></li>
-                        <li><a href="table.jsp?p=table">印尼巴西专区</a></li>
-                        <li><a href="forms.jsp?p=forms">添加专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=校内">校内专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=国外">国外专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=新生">新生专区</a></li>
+                        <li><a href="${ctx}/ynjd/list?leiXing=常见">常见问题专区</a></li>
+                        <li><a href="${ctx}/formsYN.jsp">添加专区</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx }/img/icons/menu/lab.png" alt="" />学生管理</a>
@@ -217,12 +204,7 @@
                      </ul>
                 </li>
             </ul>
-
-
         </div>  
-                
-                
-                
         <!--            
               CONTENT 
                         --> 
@@ -250,10 +232,6 @@
            
 		</c:forEach>
 		</ul>
-	
- 
-           
-  
     <br/>
     <br/>
 	<form action="${ctx}/shouyelunbotu/add" method="post">

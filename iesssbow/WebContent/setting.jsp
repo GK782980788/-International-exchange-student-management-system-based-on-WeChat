@@ -16,7 +16,7 @@
   <body>
     <article class="article">
   <header>
-    <img src="${ctx }/images/img5.jpg" width="1316px" height="400px" class="img-responsive" alt="响应式图片测试">
+    <img src="${ctx }/images/img5.jpg" width="1316px" height="170px" class="img-responsive" alt="响应式图片测试">
   </header>
   <div class="list list-condensed">
   <header>

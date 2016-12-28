@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>首页新闻页</title>
+		<title>疑难解答</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<meta name="Viewport"content="width=device-width,initial-scale=1，user-scalable=no">
 		<link rel="stylesheet" href="${ctx }/css/zuiyn.css">
@@ -41,16 +41,24 @@
     </script>
 	</head>
 	<body>
+        <h5 align="center"  style="background-color:white;height:20px;padding-top:4px;font-size:1em;
+    	-webkit-margin-start: 0px;
+    	-webkit-margin-end: 0px;">疑难解答</h5>
+       
 	<!--轮播图-->
 
-<img src="${ctx }/img/img4.jpg"  class="img-responsive" alt="响应式图片测试">
+<img src="${ctx }/images/sky3.jpg"  class="img-responsive" alt="响应式图片测试">
 <div>
+	<form action="${ctx}/ynjd/list_find" method="POST">
+	  <input type="hidden" name="leiXing"/>
       <div style="float:left; width:83%;">
-         <input type="text" class="form-control" style="" placeholder="请输入搜索内容" >
+         <input type="text" name="searchParam" class="form-control" style="" placeholder="请输入搜索内容" >
       </div>
       <div>
-         <a class="btn" style="magin-left:30px;" href="your/url/">搜索</a>
+      	<button class="btn" style="magin-left:30px;" type="submit">搜索</button>
+
       </div>
+      </form>
 </div>
 
 
@@ -59,25 +67,19 @@
      
     </div>
   <div class="col-md-4">
-    
-      <a href="${ctx }/ynjd/list_qt?leiXing="国外">
-      
+      <a href="${ctx }/ynjd/list_three?leiXing=国外">
   <img src="${ctx }/img/imggw.png"  class="img-responsives">
 </a>
-      <a href="${ctx }/ynjd/list_qt?leiXing="校内">
+  <a href="${ctx }/ynjd/list_three?leiXing=校内">
       
   <img src="${ctx }/img/imgxn.png"  class="img-responsives">
 </a>
-      <a href="${ctx }/ynjd/list_qt?leiXing="新生">
+  <a href="${ctx }/ynjd/list_three?leiXing=新生">
       
   <img src="${ctx }/img/imgxs.png"  class="img-responsives">
 </a>
 </div>
-
-
-
 </div>
-
 <div style="text-align: center; font-family:"Arial","Microsoft YaHei","楷体",sans-serif; " class="page-header">
   <h3>常见问题汇总 <span class="code"></span></h3>
 </div>
@@ -86,41 +88,31 @@
 
     <div class="item">
     <c:forEach items="${page.list}" var="p">
-    
+    <form action="${ctx }/ynjd/content" method="post">
+      <input type="hidden" name="id_YN" value="${p.id_YN}"> 
       <div class="item-content">
-      <a href="${ctx }/path/to/card/detail/content">
-        <button class="btn btn-block " type="button">${p.question}</button>
-      </a>
+        <button class="btn btn-block " type="submit">${p.question}</button>
       </div>
+      </form>
     <div style="height:10px;"></div>
    	</c:forEach>
   </div>
-
-
 <!--底栏菜单-->
 <!--底栏菜单-->
-<div class="nav4">
-
-  
+<div class="nav4" >
     <div id="nav4_ul" class="nav_4">
       <ul class="box">
-        
         <li>
-        
-        <a href="#"><img src="${ctx }/images/06.png"><span>新闻首页</span> </a>
-        </li>
-        
-        <li>
-        <a href=""><img src="${ctx }/images/08.png">信息填写</a>
-          
+        <a href="${ctx }/news/list_qtqb"><img src="${ctx }/images/02.png"><span>新闻首页</span> </a>
         </li>
         <li>
-        <a href=""><img src="${ctx }/images/04.png"><span>疑难解答</span></a>
-          
+        <a href="${ctx }/frontxxtx.jsp"><img src="${ctx }/images/08.png">信息填写</a>
+        </li>
+        <li>
+        <a href="#"><img src="${ctx }/images/01.png"><span>疑难解答</span></a>
         </li>
           <li>
-          <a href="${ctx }/../个人中心/个人中心.jsp"><img src="${ctx }/images/03.png"><span>个人中心</span></a>
-          
+          <a href="${ctx }/center.jsp"><img src="${ctx }/images/03.png"><span>个人中心</span></a>
         </li>
       </ul>
     </div>

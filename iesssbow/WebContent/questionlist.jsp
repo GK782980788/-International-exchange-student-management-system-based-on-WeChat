@@ -13,63 +13,33 @@
     body{
       background-color:rgb(240,240,240);
     }
-    </style>        
+    </style>  
+    <script type="text/javascript">
+    function tijiao(c){
+    	document.getElementById(c).submit();
+    }
+    </script>      
 	</head>
 	<body>	
-    <h3 class="header-header" align="center">赴韩专区</h3>
+    <h3 class="header-header" align="center"></h3>
     <img alt="First slide" src="${ctx}/images/10484764.jpg">    
     <div style="height: 15px;background-color: rgb(240,240,240);"></div>	
-    
-    <div class="list-group" >
-    <a href="我的消息页.html"class="list-group-item" style="border-radius: 20px;">
-    <div style="height: 80px;"class="m">
-      <h4>赴韩大学介绍</h4>
-      <div style="float: left;"><img src="${ctx}/images/10484764.jpg"width="50"height="50"/>
-      </div>
+    <c:forEach items="${page.list}" var="p">
+    <form action ="${ctx}/ynjd/content" id="${p.id_YN }"  method="post">
+    <input type="hidden" name="id_YN" value="${p.id_YN}"/>
+    <div class="list-group" onclick="tijiao(${p.id_YN});">
+    <a class="list-group-item" style="border-radius: 20px;">
+    <div style="height: 80px;"class="m"">
+      <h4>${p.question}</h4>
       <div style="padding-left:20px; white-space:nowrap;overflow:hidden;
-    text-overflow:ellipsis;">大学之道，在明明德，在亲民，在止于至善，知止而后有定，定而后能静，静而后能安，安而后能得。
+    text-overflow:ellipsis;">${p.answer}
       </div>
     </div>
     </a> 
-   </div>
+    </div>
+    </form>
+	</c:forEach>
 
-   <div class="list-group" >
-    <a href="我的消息页.html"class="list-group-item" style="border-radius: 20px;">
-    <div style="height: 80px;"class="m">
-      <h4>赴韩大学介绍</h4>
-      <div style="float: left;"><img src="${ctx}/images/10484764.jpg"width="50"height="50"/>
-      </div>
-      <div style="padding-left:20px; white-space:nowrap;overflow:hidden;
-    text-overflow:ellipsis;">大学之道，在明明德，在亲民，在止于至善，知止而后有定，定而后能静，静而后能安，安而后能得。
-      </div>
-    </div>
-    </a> 
-   </div>
 
-   <div class="list-group" >
-    <a href="我的消息页.html"class="list-group-item" style="border-radius: 20px;">
-    <div style="height: 80px;"class="m">
-      <h4>赴韩大学介绍</h4>
-      <div style="float: left;"><img src="${ctx}/images/10484764.jpg"width="50"height="50"/>
-      </div>
-      <div style="padding-left:20px; white-space:nowrap;overflow:hidden;
-    text-overflow:ellipsis;">大学之道，在明明德，在亲民，在止于至善，知止而后有定，定而后能静，静而后能安，安而后能得。
-      </div>
-    </div>
-    </a> 
-   </div>
-
-   <div class="list-group" >
-    <a href="我的消息页.html"class="list-group-item" style="border-radius: 20px;">
-    <div style="height: 80px;"class="m">
-      <h4>赴韩大学介绍</h4>
-      <div style="float: left;"><img src="${ctx}/images/qiche.jpg"width="50"height="50"/>
-      </div>
-      <div style="padding-left:20px; white-space:nowrap;overflow:hidden;
-    text-overflow:ellipsis;">大学之道，在明明德，在亲民，在止于至善，知止而后有定，定而后能静，静而后能安，安而后能得。
-      </div>
-    </div>
-    </a> 
-   </div>
 	</body>
 </html>

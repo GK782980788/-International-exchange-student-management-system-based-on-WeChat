@@ -38,6 +38,7 @@ public class NewsServiceImpl {
 		news02.setTime(news.getTime());
 		news02.setBiaoTi(news.getBiaoTi());
 		news02.setNeiRongURL(news.getNeiRongURL());
+		news02.setNeiRong(news.getNeiRong());
 		news02.setIsFaBu(news.getIsFaBu());
 		news02.setIsKorean(news.getIsKorean());
 		news02.setIsJapanese(news.getIsJapanese());

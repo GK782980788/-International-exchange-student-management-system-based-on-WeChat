@@ -20,9 +20,6 @@
    		request.setAttribute("year",year);
    		request.setAttribute("month",month);
    		request.setAttribute("day",day);
-   		request.setAttribute("hour",hour);
-   		request.setAttribute("minute",minute);
-   		request.setAttribute("second",second);
     %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -44,15 +41,18 @@
         }
       </style>
       <script type="text/javascript">
+      function tijiao(){
+  		document.getElementById("neiRong").value = UE.getEditor('editor').getContentTxt();
+  		document.getElementById('biaoDan').submit();
+      }
+      </script>
+      <script type="text/javascript">
 
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     var ue = UE.getEditor('editor');
 	
-    function tiJiao(){
-		document.getElementById("neiRong").value = UE.getEditor('editor').getContentTxt();
-		document.getElementById('biaoDan').submit();
-    }
+
 	
     function isFocus(e){
         alert(UE.getEditor('editor').isFocus());
@@ -160,29 +160,18 @@
         alert("已清空草稿箱")
     }
 </script>
-        <!-- Compressed Version
-        <link type="text/css" rel="stylesheet" href="min/b=CoreAdmin&f=css/reset.css,css/style.css,css/jqueryui/jqueryui.css,js/jwysiwyg/jquery.wysiwyg.old-school.css,js/zoombox/zoombox.css" />
-        <script type="text/javascript" src="min/b=CoreAdmin/js&f=cookie/jquery.cookie.js,jwysiwyg/jquery.wysiwyg.js,tooltipsy.min.js,iphone-style-checkboxes.js,excanvas.js,zoombox/zoombox.js,visualize.jQuery.js,jquery.uniform.min.js,main.js"></script>
-        -->
         <link rel="stylesheet" href="${ctx}/css/min.css" />
         <script type="text/javascript" src="${ctx}/js/min.js"></script>
-        
     </head>
     <body>
-        
         <script type="text/javascript" src="${ctx}/content/settings/main.js"></script>
 		<link rel="stylesheet" href="${ctx}/content/settings/style.css" />
-
-
- 
         <!--              
                 HEAD
                         --> 
         <div id="head">
             
-        </div>
-                
-                
+        </div>    
         <!--            
                 SIDEBAR
                          --> 
@@ -201,15 +190,15 @@
                           <li><a href="${ctx }/news/list_gj">国际</a></li>
                           <li><a href="${ctx }/news/list_xn">校内</a></li>
                           <li><a href="${ctx }/formsXW.jsp">添加新闻</a></li>
-                          <li><a href="${ctx }/formLB.jsp">添加首页轮播图</a></li>
+                          <li><a href="${ctx }/shouyelunbotu/list">添加首页轮播图</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx}/img/icons/menu/brush.png" alt="" /> 信息管理</a>
                     <ul>
-                        <li><a href="table.jsp?p=table">学生基本信息表</a></li>
-                        <li><a href="table.jsp?p=table">奖学金申请表</a></li>
-                        <li><a href="table.jsp?p=table">助学金申请表</a></li>
-                        <li><a href="forms.jsp?p=forms">添加申请表</a></li>
+                        <li><a href="${ctx}/xxtx/list">信息模板一</a></li>
+                        <li><a href="#">信息模板二</a></li>
+                        <li><a href="#">信息模板三</a></li>
+                        <li><a href="${ctx }/formsXX.jsp">添加申请表</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx}/img/icons/menu/factory.png" alt="" /> 疑难问题管理</a>
@@ -223,11 +212,11 @@
                 </li>
                 <li><a href="#"><img src="${ctx}/img/icons/menu/lab.png" alt="" />学生管理</a>
                     <ul>
-                        <li><a href="tableXShg.jsp">韩国学生</a></li>
-                        <li><a href="tableXSyn.jsp">印尼学生</a></li>
-                        <li><a href="tableXSbx.jsp">巴西学生</a></li>
-                        <li><a href="tableXSrb.jsp?p=table">日本学生</a></li>
-                        <li><a href="formsXS.jsp">添加学生</a></li>
+                        <li><a href="${ctx}/student/list_hg">韩国学生</a></li>
+                        <li><a href="${ctx }/student/list_yn">印尼学生</a></li>
+                        <li><a href="${ctx }/student/list_bx">巴西学生</a></li>
+                        <li><a href="${ctx }/student/list_rb">日本学生</a></li>
+                        <li><a href="${ctx }/formsXS.jsp">添加学生</a></li>
                      </ul>
                 </li>
                 <li  class="current"><a href="#"><img src="${ctx}/img/icons/menu/flag.png" alt="" />定向消息</a>
@@ -249,14 +238,14 @@
                         --> 
         <div id="content" class="white">
             <h1><img src="${ctx}/img/icons/posts.png" alt=""/>定向消息管理-新建消息</h1>
-
 <div class="bloc">
 <div class="title">
         新建消息
       </div>
    <div class="content">
     <c:if test="${action!='edit' }">
-     <form action="${ctx }/news/add_dx" method="post">
+     <form id="biaoDan" action="${ctx }/news/add_dx" method="post">
+     <input type = "hidden" name="neiRong" id="neiRong"/>
      <div class="content">
      <div class="right">
         <div class="input">
@@ -283,18 +272,16 @@
             <input type="checkbox" name="isBrazilians" id="check4" />
             <label for="check4" class="inline">巴西</label> <br/>
     </div>
-
     <br/>
     <br/>
     <br/>
     <br/>
     <br/>
-
      <div class="input">
     <label for="input3">内容</label>
     <script id="editor" type="text/plain" name="neiRongURL" style="width:1024px;height:500px;"></script>
     </div>
-    <input type = "hidden" name="neiRong" id="neiRong"/>
+
  <div id="btns">
     <div>
         <button onclick="getAllHtml()">获得整个html的内容</button>
@@ -332,15 +319,16 @@
     删除编辑器</button>
 </div>
 <div class="submit">
-    <input type="submit" value="提交" />
+    <input type="button" value="提交"  onclick="tijiao();"/>
 </div>
 	</form>
 	
     </c:if>
    <!-- ********************************edit************************************ -->
      <c:if test="${action=='edit' }">
-        <%session.setAttribute("action", "add");%>
-     	     <form action="${ctx }/news/edit_dx" method="post">
+     <%session.setAttribute("action", "add");%>
+     <form id="biaoDan" action="${ctx }/news/edit_dx" method="post">
+     <input type = "hidden" name="neiRong" id="neiRong"/>
      <div class="content">
      <div class="right">
         <div class="input">
@@ -405,7 +393,6 @@
       ${news04.neiRongURL}
     </script>
     </div>
-    <input type = "hidden" name="neiRong" id="neiRong"/>
  <div id="btns">
     <div>
         <button onclick="getAllHtml()">获得整个html的内容</button>
@@ -443,7 +430,7 @@
     删除编辑器</button>
 </div>
 <div class="submit">
-    <input type="submit" value="提交" />
+    <input type="button" value="提交" onclick="tijiao();"/>
 </div>
 	</form>
      

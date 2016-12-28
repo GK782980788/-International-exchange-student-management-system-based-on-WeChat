@@ -16,6 +16,7 @@ tableYN.jsptableYN.jsp<%@ page language="java" contentType="text/html; charset=U
         -->
         <link rel="stylesheet" href="${ctx}/css/min.css" />
         <script type="text/javascript" src="${ctx}/js/min.js"></script>
+       
     </head>
     <body>
         <script type="text/javascript" src="${ctx}/content/settings/main.js"></script>
@@ -55,15 +56,15 @@ tableYN.jsptableYN.jsp<%@ page language="java" contentType="text/html; charset=U
                         <li><a href="${ctx }/news/list_gj">国际</a></li>
                         <li><a href="${ctx }/news/list_xn">校内</a></li>
                         <li><a href="${ctx }/formsXW.jsp">添加新闻</a></li>
-                        <li><a href="${ctx }/formLB.jsp">添加首页轮播图</a></li>
+                        <li><a href="${ctx }/shouyelunbotu/list">添加首页轮播图</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx}/img/icons/menu/brush.png" alt="" /> 信息管理</a>
                     <ul>
-                        <li><a href="${ctx}/table.jsp?p=table">学生基本信息表</a></li>
-                        <li><a href="${ctx}/table.jsp?p=table">奖学金申请表</a></li>
-                        <li><a href="${ctx}/table.jsp?p=table">助学金申请表</a></li>
-                        <li><a href="${ctx}/forms.jsp?p=forms">添加申请表</a></li>
+                        <li><a href="${ctx}/xxtx/list">信息模板一</a></li>
+                        <li><a href="#">信息模板二</a></li>
+                        <li><a href="#">信息模板三</a></li>
+                        <li><a href="${ctx }/formsXX.jsp">添加申请表</a></li>
                     </ul>
                 </li>
                 <li  class="current"><a href="#"><img src="${ctx}/img/icons/menu/factory.png" alt="" /> 疑难问题管理</a>
@@ -129,17 +130,17 @@ tableYN.jsptableYN.jsp<%@ page language="java" contentType="text/html; charset=U
             <thead>
                 <tr>
                     <th>问题</th>
-                    <th>答案</th>
-                    <th>类型</th>
+                    <th  style="width:50%;">答案</th>
+                    <th  style="text-align:right;">类型</th>
                     <th style="text-align:right;">编辑&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
 				<c:forEach items="${page.list}" var="p">
-					<tr>
+					<tr style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
 						<td>${p.question}</td>
-						<td>${p.answer} </td>
-						<td>${p.leiXing}</td>
+						<td style="width:50%;">${p.answer} </td>
+						<td style="text-align:right;">${p.leiXing}</td>
 						<td style="text-align:right;"><input type="hidden" name="id_YN" value="${p.id_YN}"/><input type="hidden" name="leiXing" value="${p.leiXing}"/>
 						<a href="${ctx }/ynjd/edit?id_YN=${p.id_YN}"><img style="border: 1px sold #ccc; padding-left:20px;padding-right:45px;" src="${ctx }/img/icons/actions/edit.png"/></a>
 						<a href="${ctx }/ynjd/delete?id_YN=${p.id_YN}&leiXing=${p.leiXing}"><img src="${ctx }/img/icons/actions/delete.png"/></a>				

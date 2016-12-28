@@ -61,15 +61,15 @@
                           <li><a href="${ctx }/news/list_gj">国际</a></li>
                           <li><a href="${ctx }/news/list_xn">校内</a></li>
                           <li><a href="${ctx }/formsXW.jsp">添加新闻</a></li>
-                          <li><a href="${ctx }/formLB.jsp">添加首页轮播图</a></li>
+                          <li><a href="${ctx }/shouyelunbotu/list">添加首页轮播图</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx}/img/icons/menu/brush.png" alt="" /> 信息管理</a>
                     <ul>
-                        <li><a href="table.jsp?p=table">学生基本信息表</a></li>
-                        <li><a href="table.jsp?p=table">奖学金申请表</a></li>
-                        <li><a href="table.jsp?p=table">助学金申请表</a></li>
-                        <li><a href="forms.jsp?p=forms">添加申请表</a></li>
+                        <li><a href="${ctx}/xxtx/list">信息模板一</a></li>
+                        <li><a href="#">信息模板二</a></li>
+                        <li><a href="#">信息模板三</a></li>
+                        <li><a href="${ctx }/formsXX.jsp">添加申请表</a></li>
                     </ul>
                 </li>
                 <li><a href="#"><img src="${ctx}/img/icons/menu/factory.png" alt="" /> 疑难问题管理</a>
